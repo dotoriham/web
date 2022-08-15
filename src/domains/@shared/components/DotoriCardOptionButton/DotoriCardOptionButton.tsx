@@ -7,8 +7,8 @@ import {
 } from "assets/icons";
 import { SmallModal } from "components";
 import { useCopyUrl, useOutSideClick, useToggle } from "domains/@shared/hooks";
-import DotoriEditModal from "domains/dotori/components/DotoriEditModal";
-import { ActiveDotoriMenu } from "domains/dotori/components/DotoriList";
+import DotoriEditModal from "domains/home/components/DotoriEditModal";
+import { ActiveDotoriMenu } from "domains/home/components/DotoriList";
 import FolderListModal from "domains/@global/sidebar/FolderListModal";
 import { palette } from "lib/styles";
 import styled from "styled-components";

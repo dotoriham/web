@@ -7,7 +7,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Path from "routes/Path";
 import styled from "styled-components";
-import { ChildFolder } from ".";
+import { ChildFolder } from "../containers/ChildFoldersContainer";
 
 interface Props {
   childFolder: ChildFolder;

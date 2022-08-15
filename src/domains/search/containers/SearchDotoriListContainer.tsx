@@ -2,7 +2,7 @@ import { ItemId } from "@atlaskit/tree";
 import { SmallModal } from "components";
 import { palette } from "lib/styles";
 import { useToggle } from "domains/@shared/hooks";
-import useDotoriMutation from "domains/dotori/hooks/useDotoriMutation";
+import useDotoriMutation from "domains/home/hooks/useDotoriMutation";
 import FolderListModal from "domains/@global/sidebar/FolderListModal";
 import { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";

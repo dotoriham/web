@@ -1,7 +1,7 @@
 import { ItemId } from "@atlaskit/tree";
 import React from "react";
 import styled from "styled-components";
-import { ChildFolder } from ".";
+import { ChildFolder } from "../containers/ChildFoldersContainer";
 import ChildFolderListItem from "./ChildFolderListItem";
 
 interface Props {

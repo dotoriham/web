@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import useFolderBelongMemberListQuery from "./hooks/useFolderBelongMemberListQuery";
+import useFolderBelongMemberListQuery from "../hooks/useFolderBelongMemberListQuery";
 
 function MemberListButton() {
   const { data } = useFolderBelongMemberListQuery();

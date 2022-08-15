@@ -3,7 +3,7 @@ import { palette } from "lib/styles/palette";
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Dotori } from "types/dotori";
-import useDeleteRemind from "./hooks/useDeleteRemind";
+import useDeleteRemind from "../hooks/useDeleteRemind";
 
 interface RemindListItemProps {
   remindData: Dotori;

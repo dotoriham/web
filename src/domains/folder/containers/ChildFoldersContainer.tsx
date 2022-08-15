@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { ItemId } from "@atlaskit/tree";
 import styled from "styled-components";
-import useChildFoldersQuery from "./hooks/useChildFoldersQuery";
-import ChildFolderSelectNav from "./ChildFolderSelectNav";
+import useChildFoldersQuery from "../hooks/useChildFoldersQuery";
+import ChildFolderSelectNav from "../components/ChildFolderSelectNav";
 import { ChildFolderItem } from "types/folder";
-import ChildFolderList from "./ChildFolderList";
-import useChildFoldersMutation from "./hooks/useChildFoldersMutation";
+import ChildFolderList from "../components/ChildFolderList";
+import useChildFoldersMutation from "../hooks/useChildFoldersMutation";
 
 interface Props {
   folderId: ItemId;
@@ -15,7 +15,7 @@ export interface ChildFolder extends ChildFolderItem {
   checked: boolean;
 }
 
-function ChildFolders({ folderId }: Props) {
+function ChildFoldersContainer({ folderId }: Props) {
   const [childFolderList, setChildFolderList] = useState<ChildFolder[]>([]);
 
   const { data } = useChildFoldersQuery(folderId);
@@ -86,4 +86,4 @@ const ChildFoldersBlock = styled.div`
   margin-bottom: 19px;
 `;
 
-export default ChildFolders;
+export default ChildFoldersContainer;

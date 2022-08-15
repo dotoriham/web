@@ -1,5 +1,5 @@
 import { ArrowSide16Icon } from "assets/icons";
-import InviteTopBar from "domains/inviteTopBar/InviteTopBar";
+import InviteTopBar from "domains/folder/components/InviteTopBar";
 import { isRootFolder } from "lib/utils/atlaskitTreeFinder";
 import React from "react";
 import { useSelector } from "react-redux";
