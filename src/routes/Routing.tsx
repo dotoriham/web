@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Path from "./Path";
 import SidebarRouteLayout from "domains/@global/sidebar/SidebarRouteLayout";
 import { useCheckLogin } from "domains/@shared/hooks";
+import { useDeviceDetect } from "domains/@shared/hooks/useDeviceDetect";
 
 const SharePage = lazy(() => import("domains/share/pages/SharePage"));
 const ProfileEditPage = lazy(() => import("pages/ProfileEditPage"));
@@ -29,6 +30,7 @@ export function PublicRouting() {
 
 export function PrivateRouting() {
   useCheckLogin();
+  const { mobile } = useDeviceDetect();
   return (
     <Suspense fallback={<div css="min-height: 100vh" />}>
       <Routes>
@@ -41,7 +43,8 @@ export function PrivateRouting() {
         <Route path={Path.ProfileEditPage} element={<ProfileEditPage />} />
 
         <Route path={Path.HomePage} element={<SidebarRouteLayout />}>
-          <Route path={Path.DotoriPage} element={<DotoriPage />} />
+          {mobile ? null : <Route path={Path.DotoriPage} element={<DotoriPage />} />}
+          
           <Route path={Path.DotoriFolderPage} element={<DotoriPage />} />
           <Route path={Path.TrashPage} element={<TrashPage />} />
           <Route path={Path.SearchPage} element={<SearchPage />} />

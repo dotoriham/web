@@ -15,6 +15,7 @@ import { isLogin } from "lib/utils/auth";
 import { firebaseConfig } from "lib/firebase";
 import { isSharePage } from "lib/utils/checkRoutePath";
 import { MobileHeader } from "domains/@global/header";
+import { DeviceDetectProvider } from "domains/@shared/contexts";
 
 initializeApp(firebaseConfig);
 
@@ -23,7 +24,7 @@ function App() {
   useInitialRegisterEffect();
 
   return (
-    <>
+    <DeviceDetectProvider>
       <AppWrapper>
         <GlobalStyles />
         <MobileHeader />
@@ -44,7 +45,7 @@ function App() {
         closeButton={false}
         theme="dark"
       />
-    </>
+    </DeviceDetectProvider>
   );
 }
 
