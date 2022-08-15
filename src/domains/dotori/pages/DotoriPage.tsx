@@ -1,10 +1,10 @@
 import React from "react";
 import PagePath from "domains/pagePath/PagePath";
-import DotoriTemplate from "domains/home/components/DotoriTemplate";
-import Reminder from "domains/home/components/Reminder";
+import DotoriTemplate from "domains/dotori/components/DotoriTemplate";
+import Reminder from "domains/dotori/components/Reminder";
 import { useLocation, useParams } from "react-router-dom";
 import Path from "routes/Path";
-import ChildFolders from "domains/folder/containers/ChildFoldersContainer";
+import ChildFolders from "domains/dotori-folder/containers/ChildFoldersContainer";
 
 function DotoriPage() {
   const { folderId } = useParams();

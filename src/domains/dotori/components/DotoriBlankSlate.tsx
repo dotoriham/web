@@ -1,6 +1,6 @@
 import { SymbolGray96Icon } from "assets/icons";
 import { palette } from "lib/styles/palette";
-import { getBlankSlateText } from "domains/home/utils/dotori";
+import { getBlankSlateText } from "domains/dotori/utils/dotori";
 import React from "react";
 import styled from "styled-components";
 import { DotoriPathTypes } from "types/dotori";

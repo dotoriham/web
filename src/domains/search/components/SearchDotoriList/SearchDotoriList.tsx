@@ -1,10 +1,10 @@
 import { ItemId } from "@atlaskit/tree";
 import { DotoriCard, DotoriCardOptionButton } from "domains/@shared/components";
 import { useToast } from "domains/@shared/hooks";
-import DotoriBlankSlate from "domains/home/components/DotoriBlankSlate";
-import { ActiveDotoriMenu } from "domains/home/components/DotoriList";
-import useDotoriMutation from "domains/home/hooks/useDotoriMutation";
-import { initialDotoriState } from "domains/home/utils/constants";
+import DotoriBlankSlate from "domains/dotori/components/DotoriBlankSlate";
+import { ActiveDotoriMenu } from "domains/dotori/components/DotoriList";
+import useDotoriMutation from "domains/dotori/hooks/useDotoriMutation";
+import { initialDotoriState } from "domains/dotori/utils/constants";
 import { DotoriUiModel } from "domains/search/models/dotori.model";
 import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
