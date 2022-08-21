@@ -68,6 +68,9 @@ client.interceptors.response.use(
           axios.defaults.headers.common.refreshToken = `Bearer ${data.refreshToken}`;
           originalRequest.headers.accessToken = `Bearer ${data.accessToken}`;
           originalRequest.headers.refreshToken = `Bearer ${data.refreshToken}`;
+
+          // @Todo 여기서 지금 refreshtoken을 새로 받아와서 localStorage에 저장을 했는데, redux는 저장을 안해줘서 redux쪽에도 업데이트를 시켜줘야함.(index.tsx 참고)
+
           // 401로 요청 실패했던 요청 새로운 accessToken으로 재요청
           return axios(originalRequest);
         } catch (e) {
