@@ -4,16 +4,16 @@ import { useSelector } from "react-redux";
 import { dotoriSelector } from "stores/dotori";
 import styled from "styled-components";
 import { DotoriPathTypes, IDotoriItem } from "types/dotori";
-import { initialDotoriState } from "../utils/constants";
+import { initialDotoriState } from "../../utils/constants";
 import DotoriAddButton from "./DotoriAddButton";
 import DotoriAddModal from "./DotoriAddModal";
 import DotoriBlankSlate from "./DotoriBlankSlate";
-import useDotoriMutation from "../hooks/useDotoriMutation";
+import useDotoriMutation from "../../hooks/useDotoriMutation";
 import { media } from "lib/styles";
 import { DotoriCard, DotoriCardOptionButton } from "domains/@shared/components";
 import { useToast, useToggle } from "domains/@shared/hooks";
 import { userSelector } from "stores/user";
-import useDotoriSelect from "../hooks/useDotoriSelect";
+import useDotoriSelect from "../../hooks/useDotoriSelect";
 
 export interface ActiveDotoriMenu extends IDotoriItem {
   isOpen: boolean;

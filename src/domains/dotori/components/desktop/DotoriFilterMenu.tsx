@@ -2,7 +2,7 @@ import { palette } from "lib/styles/palette";
 import useOutSideClick from "domains/@shared/hooks/useOutSideClick";
 import React from "react";
 import styled from "styled-components";
-import { DOTORI_FILTER_MENUS } from "../utils/constants";
+import { DOTORI_FILTER_MENUS } from "../../utils/constants";
 import { FilterMenu } from "types/dotori";
 
 interface DotoriFilterMenuProps {

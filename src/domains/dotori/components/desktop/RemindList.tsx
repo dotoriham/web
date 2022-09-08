@@ -1,7 +1,7 @@
 import React from "react";
 import useSlider from "domains/@shared/hooks/useSlider";
 import styled, { css } from "styled-components";
-import useRemindQuery from "../hooks/useRemindQuery";
+import useRemindQuery from "../../hooks/useRemindQuery";
 import RemindListItem from "./RemindListItem";
 import RemindSettingMessage from "./RemindSettingMessage";
 import { Back24IMG, Next24IMG } from "assets/images";

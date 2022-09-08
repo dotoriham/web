@@ -14,7 +14,7 @@ import DotoriFilterNav from "./DotoriFilterNav";
 import { getDotoriPageSize } from "domains/dotori/utils/dotori";
 import SmallModal from "components/Modal/SmallModal";
 import FolderListModal from "domains/@global/sidebar/FolderListModal";
-import useDotoriMutation from "../hooks/useDotoriMutation";
+import useDotoriMutation from "../../hooks/useDotoriMutation";
 import { useNavigate } from "react-router-dom";
 import Path from "routes/Path";
 
