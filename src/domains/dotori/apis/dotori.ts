@@ -22,6 +22,9 @@ export const getTrashDotorisAPI = async (
 };
 
 // 검색 결과 도토리 조회
+/**
+ * @deprecated 리팩토링 후 제거 예정
+ */
 export const getSearchDotorisAPI = async (
   keyword: string,
   page: number,
@@ -36,6 +39,9 @@ export const getSearchDotorisAPI = async (
 };
 
 // 도토리 조회  folderId가 main 이면 모든 도토리 조회
+/**
+ * @deprecated 리팩토링 후 제거 예정
+ */
 export const getDotorisAPI = async (
   folderId: ItemId,
   page: number,

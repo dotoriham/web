@@ -13,6 +13,9 @@ const NotFoundPage = lazy(() => import("pages/NotFoundPage"));
 const TrashPage = lazy(() => import("pages/TrashPage"));
 const SearchPage = lazy(() => import("domains/search/pages/SearchPage"));
 const DotoriPage = lazy(() => import("domains/dotori/pages/DotoriPage"));
+const MobileDotoriPage = lazy(
+  () => import("domains/dotori/pages/MobileDotoriPage")
+);
 
 export function PublicRouting() {
   return (
@@ -29,7 +32,6 @@ export function PublicRouting() {
 
 export function PrivateRouting() {
   useCheckLogin();
-
   return (
     <Suspense fallback={<div css="min-height: 100vh" />}>
       <Routes>
@@ -42,7 +44,7 @@ export function PrivateRouting() {
         <Route path={Path.ProfileEditPage} element={<ProfileEditPage />} />
 
         <Route path={Path.HomePage} element={<SidebarRouteLayout />}>
-          <Route path={Path.DotoriPage} element={<DotoriPage />} />
+          <Route path={Path.DotoriPage} element={<MobileDotoriPage />} />
 
           <Route path={Path.DotoriFolderPage} element={<DotoriPage />} />
           <Route path={Path.TrashPage} element={<TrashPage />} />

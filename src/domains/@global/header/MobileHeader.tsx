@@ -30,11 +30,11 @@ function MobileHeader() {
 }
 
 const Container = styled.header`
-  display: none;
+  /* display: none; */
   width: 100%;
-  ${media.medium} {
+  /* ${media.medium} {
     display: block;
-  }
+  } */
 `;
 
 const Inner = styled.div`

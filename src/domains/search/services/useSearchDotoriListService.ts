@@ -8,7 +8,7 @@ const SearchDotoriListSize = 12;
 export default function useSearchDotoriListService() {
   const { keyword, page, remind, sort } = useSearchQueryParams();
 
-  const { data } = useQuery(
+  return useQuery(
     ReactQueryKey.dotoriContents("search", keyword, page, remind, sort),
     () =>
       getSearchDotoriList({
@@ -24,8 +24,4 @@ export default function useSearchDotoriListService() {
       retry: false,
     }
   );
-
-  return {
-    data,
-  };
 }
