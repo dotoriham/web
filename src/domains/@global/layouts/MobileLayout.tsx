@@ -17,6 +17,6 @@ function MobileLayout() {
 
 const Container = styled.div`
   width: 100%;
-  padding: 0 16px;
+  padding: 52px 16px 0 16px;
 `;
 export default MobileLayout;

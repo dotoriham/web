@@ -3,38 +3,49 @@ import {
   HamburgerMobileIcon,
   Search24MobileIcon,
 } from "assets/icons";
-import { media, palette } from "lib/styles";
+import { useToggle } from "domains/@shared/hooks";
+import { palette } from "lib/styles";
 import { useSelector } from "react-redux";
 import { mobileHeaderSelector } from "stores/mobileHeader";
 import styled from "styled-components";
+import MobileSidebar from "../sidebar/MobileSidebar";
 
 function MobileHeader() {
   const { leftMenu, isShowRightMenu, title } =
     useSelector(mobileHeaderSelector);
 
-  return (
-    <Container>
-      <Inner>
-        <LeftButton>
-          <HamburgerMobileIcon />
-        </LeftButton>
-        <Title>{title}</Title>
+  const [isVisibleSidebar, onToggleVisibleSidebar] = useToggle(false);
 
-        <RightButtons>
-          <Search24MobileIcon />
-          <Bell24Icon />
-        </RightButtons>
-      </Inner>
-    </Container>
+  return (
+    <>
+      <Container>
+        <Inner>
+          <LeftButton>
+            <HamburgerMobileIcon onClick={onToggleVisibleSidebar} />
+          </LeftButton>
+          <Title>{title}</Title>
+
+          <RightButtons>
+            <Search24MobileIcon />
+            <Bell24Icon />
+          </RightButtons>
+        </Inner>
+      </Container>
+      <MobileSidebar
+        visible={isVisibleSidebar}
+        onToggleVisible={onToggleVisibleSidebar}
+      />
+    </>
   );
 }
 
 const Container = styled.header`
-  /* display: none; */
   width: 100%;
-  /* ${media.medium} {
-    display: block;
-  } */
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 400;
+  background: white;
 `;
 
 const Inner = styled.div`

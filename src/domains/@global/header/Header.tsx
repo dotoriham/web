@@ -39,9 +39,6 @@ function Header() {
 const Container = styled.header`
   width: 100%;
   border-bottom: 1px solid ${palette.grayLight};
-  /* ${media.medium} {
-    display: none;
-  } */
 `;
 
 const HeaderInner = styled.div`

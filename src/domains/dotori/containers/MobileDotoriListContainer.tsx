@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { MobileDotoriList } from "../components/mobile";
 import { useInfiniteDotoriListService } from "../services";
 
