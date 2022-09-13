@@ -1,3 +1,4 @@
+import { palette } from "lib/styles";
 import React, { ReactNode, useState } from "react";
 import styled from "styled-components";
 import { DotoriDefaultImage } from "../DotoriDefaultImage";
@@ -36,7 +37,7 @@ function MobileDotoriCard({
               onError={onImageloadError}
             />
           ) : (
-            <DotoriDefaultImage width={60} height={60} />
+            <DotoriDefaultImage width={36} height={36} />
           )}
         </ImageBox>
         <Content>
@@ -46,7 +47,7 @@ function MobileDotoriCard({
             rel="noopener noreferrer"
             onClick={onClickLink}
           >
-            <Title>{title}</Title>
+            <Title>{title || "제목없음"}</Title>
             <Description>{description}</Description>
           </ContentLinked>
 
@@ -70,16 +71,18 @@ const Container = styled.div`
 
 const Inner = styled.div`
   display: flex;
-  align-items: center;
+  height: 107px;
 `;
 
 const ImageBox = styled.div`
-  width: 107px;
-  height: 99px;
   display: flex;
+  width: 99px;
+  height: 100%;
   align-items: center;
   justify-content: center;
   position: relative;
+  flex-shrink: 0;
+  margin-right: 16px;
 `;
 
 const DotoriImage = styled.img`
@@ -89,21 +92,54 @@ const DotoriImage = styled.img`
   top: 0px;
   left: 0px;
   object-fit: cover;
-  border-radius: 8px 8px 0 0;
+  border-radius: 8px;
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
 
 const ContentLinked = styled.a``;
 
-const Title = styled.div``;
+const Title = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+  color: ${palette.black};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin-bottom: 4px;
+`;
 
-const Description = styled.div``;
+const Description = styled.div`
+  font-size: 12px;
+  line-height: 1.42;
+  color: ${palette.grayDarker};
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+`;
 
 const BottomArea = styled.div``;
 
-const Author = styled.div``;
+const Author = styled.div`
+  display: flex;
+  align-items: center;
+  color: ${palette.grayDarker};
+  font-size: 10px;
+`;
 
-const ProfileImg = styled.img``;
+const ProfileImg = styled.img`
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 4px;
+`;
 
 export default MobileDotoriCard;

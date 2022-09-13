@@ -10,18 +10,11 @@ function MobileDotoriListContainer() {
     sort: "saveTime,desc",
   });
 
-  console.log({ data });
-
-  useEffect(() => {
-    console.log("Dd");
-    fetchNextPage();
-  }, []);
-
   const dotoris = data?.pages.flatMap((page) => page.content) ?? [];
 
   return (
     <div>
-      <MobileDotoriList dotoris={dotoris} />
+      <MobileDotoriList dotoris={dotoris} fetchNextPage={fetchNextPage} />
     </div>
   );
 }

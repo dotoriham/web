@@ -1,7 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import Path from "./Path";
-import SidebarRouteLayout from "domains/@global/sidebar/SidebarRouteLayout";
 import { useCheckLogin } from "domains/@shared/hooks";
 
 const SharePage = lazy(() => import("domains/share/pages/SharePage"));
@@ -43,13 +42,11 @@ export function PrivateRouting() {
         <Route path={Path.MyPage} element={<MyPage />} />
         <Route path={Path.ProfileEditPage} element={<ProfileEditPage />} />
 
-        <Route path={Path.HomePage} element={<SidebarRouteLayout />}>
-          <Route path={Path.DotoriPage} element={<MobileDotoriPage />} />
+        <Route path={Path.DotoriPage} element={<MobileDotoriPage />} />
 
-          <Route path={Path.DotoriFolderPage} element={<DotoriPage />} />
-          <Route path={Path.TrashPage} element={<TrashPage />} />
-          <Route path={Path.SearchPage} element={<SearchPage />} />
-        </Route>
+        <Route path={Path.DotoriFolderPage} element={<DotoriPage />} />
+        <Route path={Path.TrashPage} element={<TrashPage />} />
+        <Route path={Path.SearchPage} element={<SearchPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
