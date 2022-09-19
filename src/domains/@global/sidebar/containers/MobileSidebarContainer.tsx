@@ -1,10 +1,19 @@
+import {
+  ListSelectedIcon,
+  ListUnSelectedIcon,
+  SelectedTrashIcon,
+  UnselectedTrashIcon,
+} from "assets/icons";
 import { palette } from "lib/styles";
 import { throttle } from "lib/utils/throttle";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import Path from "routes/Path";
 import { userSelector } from "stores/user";
 import styled from "styled-components";
-import { SidebarProfile } from "../components/mobile";
+import { SidebarFolderList, SidebarProfile } from "../components/mobile";
+import SidebarIconName from "../SidebarIconName";
 
 interface Props {
   visible: boolean;
@@ -14,6 +23,8 @@ interface Props {
 function MobileSidebarContainer({ visible, onToggleVisible }: Props) {
   const [sidebarTop, setSidebarTop] = useState(window.scrollY);
   const user = useSelector(userSelector);
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = throttle(() => {
@@ -38,6 +49,24 @@ function MobileSidebarContainer({ visible, onToggleVisible }: Props) {
       <Container visible={visible} $top={sidebarTop}>
         <Inner>
           <SidebarProfile profileImgSrc={user.image} email={user.email} />
+
+          <SidebarIconName
+            isActive={pathname === Path.DotoriPage}
+            onClick={() => navigate(Path.DotoriPage)}
+            name="모든 도토리"
+            activeIcon={<ListSelectedIcon />}
+            unActiveIcon={<ListUnSelectedIcon />}
+          />
+
+          <SidebarFolderList />
+
+          <SidebarIconName
+            isActive={pathname === Path.TrashPage}
+            name="휴지통"
+            onClick={() => navigate(Path.TrashPage)}
+            activeIcon={<SelectedTrashIcon />}
+            unActiveIcon={<UnselectedTrashIcon />}
+          />
         </Inner>
       </Container>
       <Background
@@ -52,8 +81,7 @@ function MobileSidebarContainer({ visible, onToggleVisible }: Props) {
 const Container = styled.div<{ visible: boolean; $top: number }>`
   position: absolute;
   z-index: 9999;
-  width: 100%;
-  max-width: 300px;
+  width: 287px;
   top: ${(props) => props.$top}px;
   background-color: #fff;
   margin: auto;

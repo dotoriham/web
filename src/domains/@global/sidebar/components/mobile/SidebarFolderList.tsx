@@ -15,9 +15,7 @@ import useFolderListQuery from "domains/@global/sidebar/hooks/useFolderListQuery
 import { useDispatch, useSelector } from "react-redux";
 import { folderSelector, setFolders } from "stores/folder";
 import { More16Icon, PlusIcon } from "assets/icons";
-import FolderMenu from "./FolderMenu";
 import useToggle from "domains/@shared/hooks/useToggle";
-import FolderRenameModal from "./FolderRenameModal";
 import useCreateFolder from "domains/@global/sidebar/hooks/useCreateFolder";
 import SmallModal from "components/Modal/SmallModal";
 import useDeleteFolder from "domains/@global/sidebar/hooks/useDeleteFolder";
@@ -30,14 +28,16 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Path from "routes/Path";
 import { useQueryClient } from "react-query";
 import { QueryKey } from "lib/queryKey";
-import useInitialFolderExpand from "./hooks/useInitialFolderExpand";
+import FolderMenu from "../../FolderMenu";
+import FolderRenameModal from "../../FolderRenameModal";
+import useInitialFolderExpand from "../../hooks/useInitialFolderExpand";
 
 export interface IFolderMenuPosition {
   top: number;
   left: number;
 }
 
-function FolderList() {
+function SidebarFolderList() {
   const folders = useSelector(folderSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,8 +49,6 @@ function FolderList() {
 
   const folderBoxRef = useRef<HTMLDivElement>(null);
   const [draggingFolderId, setDraggingFolderId] = useState<ItemId | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [folderBoxHeight, setFolderBoxHeight] = useState(0);
   const [isSelectedFolderId, setIsSelectedFolderId] = useState<ItemId>(0);
 
   // modal state
@@ -101,13 +99,6 @@ function FolderList() {
     onToggleDeleteModal,
   };
 
-  const onMouseDownFolder = () => {
-    setIsDragging(true);
-    if (folderBoxRef.current) {
-      setFolderBoxHeight(folderBoxRef.current.clientHeight);
-    }
-  };
-
   // 폴더 확장
   const onExpandFolder = (itemId: ItemId) => {
     dispatch(setFolders(mutateTree(folders, itemId, { isExpanded: true })));
@@ -131,7 +122,6 @@ function FolderList() {
     if (!draggingFolderId) return;
 
     const newTree = moveItemOnTree(folders, source, destination);
-    setIsDragging(false);
 
     const prevParentId = source.parentId;
     const prevIndex = source.index;
@@ -167,15 +157,12 @@ function FolderList() {
   }: RenderItemParams): ReactElement => {
     return (
       <>
-        <FolderItemWrapper
+        <div
           ref={provided.innerRef}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-          <FolderItemBlock
-            onMouseDown={onMouseDownFolder}
-            onMouseUp={() => setIsDragging(false)}
-          >
+          <FolderItemBlock>
             <FolderLeftBox>
               <FolderItemIcon
                 item={item}
@@ -191,7 +178,6 @@ function FolderList() {
             </FolderLeftBox>
 
             <FolderRightBox
-              className="right"
               onMouseDown={(e) => e.stopPropagation()}
               onClick={(e) => e.stopPropagation()}
             >
@@ -209,17 +195,13 @@ function FolderList() {
               </FolderETCButton>
             </FolderRightBox>
           </FolderItemBlock>
-        </FolderItemWrapper>
+        </div>
       </>
     );
   };
 
   return (
-    <FolderListWrapper
-      folderBoxHeight={folderBoxHeight}
-      isDragging={isDragging}
-      ref={folderBoxRef}
-    >
+    <FolderListWrapper ref={folderBoxRef}>
       <Tree
         tree={folders}
         renderItem={renderFolderItem}
@@ -269,20 +251,13 @@ function FolderList() {
   );
 }
 
-const FolderListWrapper = styled.div<{
-  folderBoxHeight: number;
-  isDragging: boolean;
-}>`
-  ${(props) => props.isDragging && `height: ${props.folderBoxHeight}px;`}
+const FolderListWrapper = styled.div`
+  height: 414px;
+  margin: 0 -16px;
   position: relative;
-  max-height: 530px;
   overflow: hidden auto;
   overflow-x: auto;
   ${scrollbar}
-`;
-
-const FolderItemWrapper = styled.div`
-  width: 166px;
 `;
 
 const FolderItemBlock = styled.div`
@@ -290,18 +265,13 @@ const FolderItemBlock = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
-  min-width: 105px;
-  max-width: 166px;
-  height: 28px;
+  height: 48px;
   font-size: 12px;
   padding: 5px 2px;
   border-radius: 4px;
   &:hover {
     background-color: ${palette.hover0};
     font-weight: 500;
-    .right {
-      display: flex;
-    }
   }
 `;
 
@@ -315,29 +285,27 @@ const FolderTitle = styled.span<{ active: boolean }>`
   cursor: pointer;
   color: ${({ active }) => (active ? palette.primary : palette.black)};
   margin-left: 4px;
-  height: 28px;
-  line-height: 28px;
+  height: 48px;
+  line-height: 48px;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  font-size: 14px;
   &:hover {
     text-decoration: underline;
   }
 `;
 
 const FolderRightBox = styled.div`
-  display: none;
+  display: flex;
   align-items: center;
 `;
 
 const FolderETCButton = styled.button`
-  margin-right: 3px;
+  margin-right: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  &:last-child {
-    margin-right: 8px;
-  }
 `;
 
-export default FolderList;
+export default SidebarFolderList;
