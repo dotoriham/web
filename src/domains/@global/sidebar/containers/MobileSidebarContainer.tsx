@@ -1,15 +1,19 @@
 import { palette } from "lib/styles";
 import { throttle } from "lib/utils/throttle";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { userSelector } from "stores/user";
 import styled from "styled-components";
+import { SidebarProfile } from "../components/mobile";
 
 interface Props {
   visible: boolean;
   onToggleVisible(): void;
 }
 
-function MobileSidebar({ visible, onToggleVisible }: Props) {
+function MobileSidebarContainer({ visible, onToggleVisible }: Props) {
   const [sidebarTop, setSidebarTop] = useState(window.scrollY);
+  const user = useSelector(userSelector);
 
   useEffect(() => {
     const onScroll = throttle(() => {
@@ -31,7 +35,11 @@ function MobileSidebar({ visible, onToggleVisible }: Props) {
 
   return (
     <>
-      <Container visible={visible} $top={sidebarTop}></Container>
+      <Container visible={visible} $top={sidebarTop}>
+        <Inner>
+          <SidebarProfile profileImgSrc={user.image} email={user.email} />
+        </Inner>
+      </Container>
       <Background
         visible={visible}
         $top={sidebarTop}
@@ -55,6 +63,10 @@ const Container = styled.div<{ visible: boolean; $top: number }>`
   transform: translateX(${({ visible }) => (visible ? 0 : -100)}vw);
 `;
 
+const Inner = styled.div`
+  padding: 16px;
+`;
+
 const Background = styled.div<{ visible: boolean; $top: number }>`
   ${({ visible }) => (visible ? "display: block" : "display: none")};
   width: 100%;
@@ -67,4 +79,4 @@ const Background = styled.div<{ visible: boolean; $top: number }>`
   opacity: 0.3;
 `;
 
-export default MobileSidebar;
+export default MobileSidebarContainer;

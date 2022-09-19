@@ -8,7 +8,7 @@ import { palette } from "lib/styles";
 import { useSelector } from "react-redux";
 import { mobileHeaderSelector } from "stores/mobileHeader";
 import styled from "styled-components";
-import MobileSidebar from "../sidebar/MobileSidebar";
+import MobileSidebarContainer from "../sidebar/containers/MobileSidebarContainer";
 
 function MobileHeader() {
   const { leftMenu, isShowRightMenu, title } =
@@ -31,7 +31,7 @@ function MobileHeader() {
           </RightButtons>
         </Inner>
       </Container>
-      <MobileSidebar
+      <MobileSidebarContainer
         visible={isVisibleSidebar}
         onToggleVisible={onToggleVisibleSidebar}
       />

@@ -49,3 +49,4 @@ export { ReactComponent as TrashBallonIcon } from "./TrashBallonIcon.svg";
 export { ReactComponent as Search24MobileIcon } from "./Icons_Search_24_mobile.svg";
 export { ReactComponent as HamburgerMobileIcon } from "./Icon_Hamburger_mobile.svg";
 export { ReactComponent as ArrowPre24Icon } from "./Icon_arrow_pre_24.svg";
+export { ReactComponent as SettingIcon } from "./Icons_settings.svg";
