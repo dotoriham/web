@@ -1,1 +1,1 @@
-export { default as MobileDotoriList } from "./MobileDotoriList";
+export { default as DotoriList } from "./DotoriList";

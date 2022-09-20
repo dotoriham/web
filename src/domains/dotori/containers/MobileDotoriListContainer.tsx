@@ -1,5 +1,5 @@
 import React from "react";
-import { MobileDotoriList } from "../components/mobile";
+import { DotoriList } from "../components/mobile";
 import { useInfiniteDotoriListService } from "../services";
 
 function MobileDotoriListContainer() {
@@ -14,7 +14,7 @@ function MobileDotoriListContainer() {
 
   return (
     <div>
-      <MobileDotoriList dotoris={dotoris} fetchNextPage={fetchNextPage} />
+      <DotoriList dotoris={dotoris} fetchNextPage={fetchNextPage} />
     </div>
   );
 }

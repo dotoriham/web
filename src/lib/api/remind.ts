@@ -9,13 +9,13 @@ export const getRemindListAPI = async () => {
 
 // @Note  remind 설정 API
 export const setRemindAPI = async (dotoriId: string) => {
-  const response = await client.post(`/api/v1/bookmark/remind/${dotoriId}`);
+  const response = await client.get(`/api/v1/bookmark/remindOn/${dotoriId}`);
   return response.data;
 };
 
 // 리마인드 삭제
 export const deleteRemindAPI = async (bookmarkId: string) => {
-  const response = await client.delete(`/api/v1/remind/${bookmarkId}`);
+  const response = await client.get(`/api/v1/remindOff/${bookmarkId}`);
   return response.data;
 };
 

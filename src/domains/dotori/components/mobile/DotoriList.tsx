@@ -8,7 +8,7 @@ interface Props {
   fetchNextPage(): void;
 }
 
-function MobileDotoriList({ dotoris, fetchNextPage }: Props) {
+function DotoriList({ dotoris, fetchNextPage }: Props) {
   const [subscribe] = useInfiniteScroll(fetchNextPage);
 
   return (
@@ -33,4 +33,4 @@ function MobileDotoriList({ dotoris, fetchNextPage }: Props) {
   );
 }
 
-export default MobileDotoriList;
+export default DotoriList;
