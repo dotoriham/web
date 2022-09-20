@@ -4,12 +4,12 @@ import Path from "./Path";
 import { useCheckLogin } from "domains/@shared/hooks";
 
 const SharePage = lazy(() => import("domains/share/pages/SharePage"));
-const ProfileEditPage = lazy(() => import("pages/ProfileEditPage"));
-const SignupPage = lazy(() => import("pages/SignupPage"));
-const LoginPage = lazy(() => import("pages/LoginPage"));
-const MyPage = lazy(() => import("pages/MyPage"));
-const NotFoundPage = lazy(() => import("pages/NotFoundPage"));
-const TrashPage = lazy(() => import("pages/TrashPage"));
+const ProfileEditPage = lazy(() => import("domains/mypage-edit/pages/ProfileEditPage"));
+const SignupPage = lazy(() => import("domains/signup/pages/SignupPage"));
+const LoginPage = lazy(() => import("domains/login/pages/LoginPage"));
+const MyPage = lazy(() => import("domains/mypage/pages/MyPage"));
+const NotFoundPage = lazy(() => import("domains/notFound/pages/NotFoundPage"));
+const TrashPage = lazy(() => import("domains/trash/pages/TrashPage"));
 const SearchPage = lazy(() => import("domains/search/pages/SearchPage"));
 const DotoriPage = lazy(() => import("domains/dotori/pages/DotoriPage"));
 const MobileDotoriPage = lazy(
