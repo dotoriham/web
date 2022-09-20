@@ -4,6 +4,7 @@ import {
   SelectedTrashIcon,
   UnselectedTrashIcon,
 } from "assets/icons";
+import { Button } from "components";
 import { palette } from "lib/styles";
 import { throttle } from "lib/utils/throttle";
 import React, { useEffect, useState } from "react";
@@ -12,8 +13,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Path from "routes/Path";
 import { userSelector } from "stores/user";
 import styled from "styled-components";
-import { SidebarFolderList, SidebarProfile } from "../components/mobile";
-import SidebarIconName from "../SidebarIconName";
+import {
+  SidebarFolderList,
+  SidebarIconName,
+  SidebarProfile,
+} from "../components/mobile";
+import SidebarAddFolderButton from "../components/mobile/SidebarAddFolderButton";
 
 interface Props {
   visible: boolean;
@@ -48,22 +53,36 @@ function MobileSidebarContainer({ visible, onToggleVisible }: Props) {
     <>
       <Container visible={visible} $top={sidebarTop}>
         <Inner>
-          <SidebarProfile profileImgSrc={user.image} email={user.email} />
+          <SidebarProfile
+            profileImgSrc={user.image}
+            email={user.email}
+            onClickProfile={() => {
+              navigate(Path.MyPage);
+              onToggleVisible();
+            }}
+          />
 
           <SidebarIconName
             isActive={pathname === Path.DotoriPage}
-            onClick={() => navigate(Path.DotoriPage)}
+            onClick={() => {
+              navigate(Path.DotoriPage);
+              onToggleVisible();
+            }}
             name="모든 도토리"
             activeIcon={<ListSelectedIcon />}
             unActiveIcon={<ListUnSelectedIcon />}
           />
 
-          <SidebarFolderList />
+          <SidebarFolderList onFolderClick={onToggleVisible} />
+          <SidebarAddFolderButton />
 
           <SidebarIconName
             isActive={pathname === Path.TrashPage}
             name="휴지통"
-            onClick={() => navigate(Path.TrashPage)}
+            onClick={() => {
+              navigate(Path.TrashPage);
+              onToggleVisible();
+            }}
             activeIcon={<SelectedTrashIcon />}
             unActiveIcon={<UnselectedTrashIcon />}
           />

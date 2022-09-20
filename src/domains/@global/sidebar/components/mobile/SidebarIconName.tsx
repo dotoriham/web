@@ -29,19 +29,19 @@ const SidebarIconNameStyled = styled.button`
   display: flex;
   height: 21px;
   width: 166px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 `;
 
 const IconBox = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  margin-right: 6px;
+  margin-right: 12px;
 `;
 
 const Name = styled.span<{ active?: boolean }>`
   height: 100%;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 21px;
   ${({ active }) =>
     active
@@ -50,7 +50,7 @@ const Name = styled.span<{ active?: boolean }>`
           font-weight: 500;
         `
       : css`
-          color: #9d9c9c;
+          color: ${palette.grayDarker};
           font-weight: 400;
         `}
 `;

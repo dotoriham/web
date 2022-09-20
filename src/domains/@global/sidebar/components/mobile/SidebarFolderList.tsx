@@ -8,7 +8,6 @@ import Tree, {
   TreeSourcePosition,
 } from "@atlaskit/tree";
 import styled from "styled-components";
-import FolderItemIcon from "domains/@global/sidebar/FolderItemIcon";
 import { palette } from "lib/styles/palette";
 import { scrollbar } from "lib/styles/utilStyles";
 import useFolderListQuery from "domains/@global/sidebar/hooks/useFolderListQuery";
@@ -31,13 +30,18 @@ import { QueryKey } from "lib/queryKey";
 import FolderMenu from "../../FolderMenu";
 import FolderRenameModal from "../../FolderRenameModal";
 import useInitialFolderExpand from "../../hooks/useInitialFolderExpand";
+import SidebarFolderItemIcon from "./SidebarFolderItemIcon";
 
 export interface IFolderMenuPosition {
   top: number;
   left: number;
 }
 
-function SidebarFolderList() {
+interface Props {
+  onFolderClick(): void;
+}
+
+function SidebarFolderList({ onFolderClick }: Props) {
   const folders = useSelector(folderSelector);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -164,14 +168,17 @@ function SidebarFolderList() {
         >
           <FolderItemBlock>
             <FolderLeftBox>
-              <FolderItemIcon
+              <SidebarFolderItemIcon
                 item={item}
                 onCollapse={onCollapse}
                 onExpand={onExpand}
               />
               <FolderTitle
                 active={pathname === `${Path.DotoriPage}/${item.id}`}
-                onClick={() => navigate(`${Path.DotoriPage}/${item.id}`)}
+                onClick={() => {
+                  navigate(`${Path.DotoriPage}/${item.id}`);
+                  onFolderClick();
+                }}
               >
                 {item.data.name}
               </FolderTitle>
@@ -252,12 +259,14 @@ function SidebarFolderList() {
 }
 
 const FolderListWrapper = styled.div`
-  height: 414px;
+  height: 390px;
   margin: 0 -16px;
   position: relative;
   overflow: hidden auto;
   overflow-x: auto;
-  ${scrollbar}
+  border-top: 1px solid #e5e5e4;
+  border-bottom: 1px solid #e5e5e4;
+  ${scrollbar};
 `;
 
 const FolderItemBlock = styled.div`

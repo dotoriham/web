@@ -5,11 +5,12 @@ import styled from "styled-components";
 interface Props {
   profileImgSrc: string;
   email: string;
+  onClickProfile(): void;
 }
 
-function SidebarProfile({ email, profileImgSrc }: Props) {
+function SidebarProfile({ email, profileImgSrc, onClickProfile }: Props) {
   return (
-    <Container>
+    <Container onClick={onClickProfile}>
       <ProfileImage src={profileImgSrc} alt="profile" />
       <ProfileEmail>{email}</ProfileEmail>
       <SettingIcon />
@@ -22,6 +23,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-top: 4px;
+  margin-bottom: 20px;
 `;
 
 const ProfileImage = styled.img`
