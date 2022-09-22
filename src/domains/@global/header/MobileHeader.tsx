@@ -20,15 +20,19 @@ function MobileHeader() {
     <>
       <Container>
         <Inner>
-          <LeftButton>
-            <HamburgerMobileIcon onClick={onToggleVisibleSidebar} />
-          </LeftButton>
+          {leftMenu && (
+            <LeftButton>
+              <HamburgerMobileIcon onClick={onToggleVisibleSidebar} />
+            </LeftButton>
+          )}
           <Title>{title}</Title>
 
-          <RightButtons>
-            <Search24MobileIcon />
-            <Bell24Icon />
-          </RightButtons>
+          {isShowRightMenu && (
+            <RightButtons>
+              <Search24MobileIcon />
+              <Bell24Icon />
+            </RightButtons>
+          )}
         </Inner>
       </Container>
       <MobileSidebarContainer

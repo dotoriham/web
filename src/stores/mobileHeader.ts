@@ -9,8 +9,8 @@ export interface MobileHeaderState {
 
 const initialState: MobileHeaderState = {
   isShowRightMenu: false,
-  leftMenu: "back",
-  title: "제주도 여행",
+  leftMenu: null,
+  title: "",
 };
 
 const mobileHeader = createSlice({

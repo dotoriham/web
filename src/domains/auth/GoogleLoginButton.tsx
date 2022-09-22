@@ -5,7 +5,11 @@ import React from "react";
 import GoogleLogin from "react-google-login";
 import styled from "styled-components";
 
-function GoogleLoginButton() {
+interface Props {
+  className?: string;
+}
+
+function GoogleLoginButton({ className }: Props) {
   const { clientId, onGoogleLogin } = useGoogleLogin();
 
   return (
@@ -13,7 +17,7 @@ function GoogleLoginButton() {
       clientId={clientId}
       onSuccess={onGoogleLogin}
       render={(renderProps) => (
-        <GoogleButton onClick={renderProps.onClick}>
+        <GoogleButton className={className} onClick={renderProps.onClick}>
           <GoogleImg
             src={GoogleIMG}
             srcSet={`${GoogleImg} 400w, ${GoogleIMG2x} 700w, ${GoogleIMG3x} 1000w`}

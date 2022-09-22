@@ -4,9 +4,13 @@ import Path from "./Path";
 import { useCheckLogin } from "domains/@shared/hooks";
 
 const SharePage = lazy(() => import("domains/share/pages/SharePage"));
-const ProfileEditPage = lazy(() => import("domains/mypage-edit/pages/ProfileEditPage"));
+const ProfileEditPage = lazy(
+  () => import("domains/mypage-edit/pages/ProfileEditPage")
+);
 const SignupPage = lazy(() => import("domains/signup/pages/SignupPage"));
-const LoginPage = lazy(() => import("domains/login/pages/LoginPage"));
+const MobileLoginPage = lazy(
+  () => import("domains/login/pages/MobileLoginPage")
+);
 const MyPage = lazy(() => import("domains/mypage/pages/MyPage"));
 const NotFoundPage = lazy(() => import("domains/notFound/pages/NotFoundPage"));
 const TrashPage = lazy(() => import("domains/trash/pages/TrashPage"));
@@ -21,7 +25,7 @@ export function PublicRouting() {
     <Suspense fallback={<div css="min-height: 100vh" />}>
       <Routes>
         <Route path={Path.SharePage} element={<SharePage />} />
-        <Route path={Path.LoginPage} element={<LoginPage />} />
+        <Route path={Path.LoginPage} element={<MobileLoginPage />} />
         <Route path={Path.SignupPage} element={<SignupPage />} />
         <Route path="*" element={<Navigate replace to={Path.LoginPage} />} />
       </Routes>

@@ -27,3 +27,4 @@ export { default as RemindTutorialStep2IMG } from "./tuto_remind2.png";
 export { default as RemindTutorialStep3IMG } from "./tuto_remind3.png";
 export { default as RemindTutorialStep4IMG } from "./tuto_remind4.png";
 export { default as MakePeopleIMG } from "./makePeople.png";
+export { default as LogoMobileIMG } from "./logo-mobile-56.png";
