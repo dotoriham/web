@@ -28,7 +28,6 @@ import Path from "routes/Path";
 import { useQueryClient } from "react-query";
 import { QueryKey } from "lib/queryKey";
 import FolderMenu from "../../FolderMenu";
-import FolderRenameModal from "../../FolderRenameModal";
 import useInitialFolderExpand from "../../hooks/useInitialFolderExpand";
 import SidebarFolderItemIcon from "./SidebarFolderItemIcon";
 import SidebarFolderRenameModal from "./SidebarFolderRenameModal";

@@ -4,7 +4,6 @@ import {
   SelectedTrashIcon,
   UnselectedTrashIcon,
 } from "assets/icons";
-import { Button } from "components";
 import { palette } from "lib/styles";
 import { throttle } from "lib/utils/throttle";
 import React, { useEffect, useState } from "react";
