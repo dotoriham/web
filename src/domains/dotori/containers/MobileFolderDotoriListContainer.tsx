@@ -21,7 +21,6 @@ function MobileFolderDotoriListContainer() {
   });
 
   const { pagePath } = usePagePathService(folderId);
-  console.log({ pagePath });
 
   useMobileHeader({
     isShowRightMenu: true,
