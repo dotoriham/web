@@ -31,6 +31,7 @@ import FolderMenu from "../../FolderMenu";
 import FolderRenameModal from "../../FolderRenameModal";
 import useInitialFolderExpand from "../../hooks/useInitialFolderExpand";
 import SidebarFolderItemIcon from "./SidebarFolderItemIcon";
+import SidebarFolderRenameModal from "./SidebarFolderRenameModal";
 
 export interface IFolderMenuPosition {
   top: number;
@@ -229,9 +230,9 @@ function SidebarFolderList({ onFolderClick }: Props) {
       )}
 
       {isRenameModal && (
-        <FolderRenameModal
-          position={folderMenuPosition}
-          onToggleModal={onToggleRenameModal}
+        <SidebarFolderRenameModal
+          isOpen={isRenameModal}
+          onClose={onToggleRenameModal}
           isSelectedFolderId={isSelectedFolderId}
         />
       )}

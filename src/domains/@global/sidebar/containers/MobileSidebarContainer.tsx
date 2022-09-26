@@ -99,7 +99,7 @@ function MobileSidebarContainer({ visible, onToggleVisible }: Props) {
 
 const Container = styled.div<{ visible: boolean; $top: number }>`
   position: absolute;
-  z-index: 9999;
+  z-index: 3000;
   width: 287px;
   top: ${(props) => props.$top}px;
   background-color: #fff;

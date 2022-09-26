@@ -62,7 +62,7 @@ const ModalBackground = styled.div`
   left: 0;
   top: 0;
   opacity: 0.3;
-  z-index: 2000;
+  z-index: 4000;
 `;
 
 const Wrapper = styled.div<{ isOpen: boolean }>`
