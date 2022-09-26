@@ -1,18 +1,20 @@
-import React from "react";
 import { useMobileHeader } from "domains/@shared/hooks";
+import { useDotoriQueryParams } from "domains/dotori/hooks";
+import { useInfiniteDotoriListService } from "domains/dotori/services";
+import React from "react";
+import { useParams } from "react-router-dom";
 import { DotoriFilter, DotoriList } from "../components/mobile";
-import { useDotoriQueryParams } from "../hooks";
-import { useInfiniteDotoriListService } from "../services";
 
-function MobileDotoriListContainer() {
+function MobileFolderDotoriListContainer() {
   const { remind, sort } = useDotoriQueryParams();
+  const { folderId = "" } = useParams<"folderId">();
 
   const { data, fetchNextPage } = useInfiniteDotoriListService({
     page: 0,
     size: 12,
     remind,
     sort,
-    folderId: "main",
+    folderId,
   });
 
   useMobileHeader({
@@ -31,4 +33,4 @@ function MobileDotoriListContainer() {
   );
 }
 
-export default MobileDotoriListContainer;
+export default MobileFolderDotoriListContainer;
