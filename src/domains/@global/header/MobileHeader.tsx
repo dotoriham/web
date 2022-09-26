@@ -69,6 +69,7 @@ const Title = styled.span`
   color: ${palette.grayDarkest};
   font-size: 14px;
   line-height: 1.5;
+  font-weight: 500;
 `;
 
 const RightButtons = styled.div`

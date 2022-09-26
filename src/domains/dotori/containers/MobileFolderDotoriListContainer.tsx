@@ -1,6 +1,9 @@
 import { useMobileHeader } from "domains/@shared/hooks";
 import { useDotoriQueryParams } from "domains/dotori/hooks";
-import { useInfiniteDotoriListService } from "domains/dotori/services";
+import {
+  useInfiniteDotoriListService,
+  usePagePathService,
+} from "domains/dotori/services";
 import React from "react";
 import { useParams } from "react-router-dom";
 import { DotoriFilter, DotoriList } from "../components/mobile";
@@ -17,10 +20,13 @@ function MobileFolderDotoriListContainer() {
     folderId,
   });
 
+  const { pagePath } = usePagePathService(folderId);
+  console.log({ pagePath });
+
   useMobileHeader({
     isShowRightMenu: true,
     leftMenu: "menu",
-    title: "모든 도토리",
+    title: pagePath,
   });
 
   const dotoris = data?.pages.flatMap((page) => page.content) ?? [];
