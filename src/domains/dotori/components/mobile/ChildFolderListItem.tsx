@@ -1,5 +1,7 @@
 import { FolderEmoji } from "components";
 import React from "react";
+import { Link } from "react-router-dom";
+import Path from "routes/Path";
 import styled from "styled-components";
 import { ChildFolderItem } from "types/folder";
 
@@ -8,17 +10,17 @@ interface Props {
 }
 
 function ChildFolderListItem({ childFolder }: Props) {
-  const { emoji, name } = childFolder;
+  const { emoji, name, folderId } = childFolder;
 
   return (
-    <Container>
+    <Container to={`${Path.DotoriPage}/${folderId}`}>
       <FolderEmoji emoji={emoji} />
       <span>{name}</span>
     </Container>
   );
 }
 
-const Container = styled.div`
+const Container = styled(Link)`
   border: 1px solid #d4d2cf;
   border-radius: 6px;
   display: flex;
