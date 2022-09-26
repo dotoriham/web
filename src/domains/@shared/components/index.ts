@@ -4,3 +4,4 @@ export * from "./DotoriCardOptionButton";
 export * from "./AuthTemplate";
 export * from "./AuthDivider";
 export * from "./AuthLinked";
+export * from "./DrawerModal";

@@ -8,7 +8,10 @@ function MobileChildFolderListContainer() {
   const { folderId = "" } = useParams<"folderId">();
 
   const { data } = useChildFolderListService(folderId);
-  console.log({ data });
+
+  if (!data || !data.length) {
+    return null;
+  }
 
   return (
     <>

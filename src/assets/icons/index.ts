@@ -50,3 +50,5 @@ export { ReactComponent as Search24MobileIcon } from "./Icons_Search_24_mobile.s
 export { ReactComponent as HamburgerMobileIcon } from "./Icon_Hamburger_mobile.svg";
 export { ReactComponent as ArrowPre24Icon } from "./Icon_arrow_pre_24.svg";
 export { ReactComponent as SettingIcon } from "./Icons_settings.svg";
+export { ReactComponent as ButtonWrite52Icon } from "./btn_write_52.svg";
+export { ReactComponent as X24Icon } from "./icons_x_24.svg";
