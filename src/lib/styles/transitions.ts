@@ -9,8 +9,26 @@ const fadeIn = keyframes`
   }
 `;
 
+const popInFromBottom = keyframes`
+  0% {
+    transform: translateY(100%) 
+  }
+  100% {
+    transform: translateY(0px);
+  }`;
+
+const popOutToBottom = keyframes`
+  0% {
+    transform: translateY(0px) 
+  }
+  100% {
+    transform: translateY(100%) 
+  }`;
+
 const transitions = {
   fadeIn,
+  popInFromBottom,
+  popOutToBottom,
 };
 
 export default transitions;

@@ -1,3 +1,4 @@
+import { DotoriSortType } from "domains/@shared/models";
 import { DOTORI_PAGE_SIZE } from "domains/dotori/utils/constants";
 import { DotoriPathTypes } from "types/dotori";
 
@@ -36,5 +37,20 @@ export function getBlankSlateText(path: DotoriPathTypes) {
       return "휴지통이 비어있어요!";
     default:
       return "아직 저장한 도토리가 없어요!";
+  }
+}
+
+export function getDotoriSortText(sort: DotoriSortType) {
+  switch (sort) {
+    case "saveTime,desc":
+      return "최신순";
+    case "saveTime,asc":
+      return "오래된 순";
+    case "clickCount,asc":
+      return "적게 방문한 순";
+    case "clickCount,desc":
+      return "자주 방문한 순";
+    default:
+      return "최신순";
   }
 }

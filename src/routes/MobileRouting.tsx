@@ -7,7 +7,9 @@ const SharePage = lazy(() => import("domains/share/pages/SharePage"));
 const ProfileEditPage = lazy(
   () => import("domains/mypage-edit/pages/ProfileEditPage")
 );
-const SignupPage = lazy(() => import("domains/signup/pages/SignupPage"));
+const MobileSignupPage = lazy(
+  () => import("domains/signup/pages/MobileSignupPage")
+);
 const MobileLoginPage = lazy(
   () => import("domains/login/pages/MobileLoginPage")
 );
@@ -26,7 +28,7 @@ export function PublicRouting() {
       <Routes>
         <Route path={Path.SharePage} element={<SharePage />} />
         <Route path={Path.LoginPage} element={<MobileLoginPage />} />
-        <Route path={Path.SignupPage} element={<SignupPage />} />
+        <Route path={Path.SignupPage} element={<MobileSignupPage />} />
         <Route path="*" element={<Navigate replace to={Path.LoginPage} />} />
       </Routes>
     </Suspense>

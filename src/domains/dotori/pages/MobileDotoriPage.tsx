@@ -1,14 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  MobileDotoriListContainer,
-  MobileRemindListContainer,
-} from "../containers";
+import { MobileDotoriListContainer } from "../containers";
 
 function MobileDotoriPage() {
   return (
     <Container>
-      <MobileRemindListContainer />
+      {/* <MobileRemindListContainer /> */}
       <MobileDotoriListContainer />
     </Container>
   );

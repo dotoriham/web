@@ -3,7 +3,7 @@ import { LogoMobileIMG } from "assets/images";
 import styled from "styled-components";
 import { palette } from "lib/styles";
 import GoogleLoginButton from "domains/auth/GoogleLoginButton";
-import { AuthDivider } from "domains/login/components/mobile";
+import { MobileAuthDivider } from "../AuthDivider";
 
 interface Props {
   children: ReactNode;
@@ -15,7 +15,8 @@ function MobileAuthTemplate({ children }: Props) {
       <Title>함께 쓰는 북마크 아카이빙</Title>
       <img src={LogoMobileIMG} alt="도토리함 로고" />
       <GoogleLoginButton className="googleLoginBtn" />
-      <AuthDivider />
+      <MobileAuthDivider />
+      {children}
     </Container>
   );
 }

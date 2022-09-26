@@ -7,3 +7,4 @@ export { default as useSlider } from "./useSlider";
 export { default as useToast } from "./useToast";
 export { default as useToggle } from "./useToggle";
 export { default as useQueryString } from "./useQueryString";
+export { default as useMobileHeader } from "./useMobileHeader";
