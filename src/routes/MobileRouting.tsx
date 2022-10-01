@@ -13,7 +13,6 @@ const MobileSignupPage = lazy(
 const MobileLoginPage = lazy(
   () => import("domains/login/pages/MobileLoginPage")
 );
-const MyPage = lazy(() => import("domains/mypage/pages/MyPage"));
 const NotFoundPage = lazy(() => import("domains/notFound/pages/NotFoundPage"));
 const TrashPage = lazy(() => import("domains/trash/pages/TrashPage"));
 const SearchPage = lazy(() => import("domains/search/pages/SearchPage"));
@@ -23,6 +22,7 @@ const MobileDotoriPage = lazy(
 const MobileDotoriFolderPage = lazy(
   () => import("domains/dotori/pages/MobileDotoriFolderPage")
 );
+const MobileMyPage = lazy(() => import("domains/mypage/pages/MobileMyPage"));
 
 export function PublicRouting() {
   return (
@@ -47,7 +47,7 @@ export function PrivateRouting() {
           path={Path.HomePage}
           element={<Navigate replace to={Path.DotoriPage} />}
         />
-        <Route path={Path.MyPage} element={<MyPage />} />
+        <Route path={Path.MyPage} element={<MobileMyPage />} />
         <Route path={Path.ProfileEditPage} element={<ProfileEditPage />} />
 
         <Route path={Path.DotoriPage} element={<MobileDotoriPage />} />

@@ -1,4 +1,5 @@
 import {
+  ArrowPre24Icon,
   Bell24Icon,
   HamburgerMobileIcon,
   Search24MobileIcon,
@@ -6,6 +7,7 @@ import {
 import { useToggle } from "domains/@shared/hooks";
 import { palette } from "lib/styles";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { mobileHeaderSelector } from "stores/mobileHeader";
 import styled from "styled-components";
 import MobileSidebarContainer from "../sidebar/containers/MobileSidebarContainer";
@@ -15,16 +17,33 @@ function MobileHeader() {
     useSelector(mobileHeaderSelector);
 
   const [isVisibleSidebar, onToggleVisibleSidebar] = useToggle(false);
+  const navigate = useNavigate();
+
+  const printLeftMenu = () => {
+    switch (leftMenu) {
+      case "back":
+        return (
+          <LeftButton>
+            <ArrowPre24Icon onClick={() => navigate(-1)} />
+          </LeftButton>
+        );
+
+      case "menu":
+        return (
+          <LeftButton>
+            <HamburgerMobileIcon onClick={onToggleVisibleSidebar} />
+          </LeftButton>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <>
       <Container>
         <Inner>
-          {leftMenu && (
-            <LeftButton>
-              <HamburgerMobileIcon onClick={onToggleVisibleSidebar} />
-            </LeftButton>
-          )}
+          {printLeftMenu()}
           <Title>{title}</Title>
 
           {isShowRightMenu && (

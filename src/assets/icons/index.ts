@@ -52,3 +52,6 @@ export { ReactComponent as ArrowPre24Icon } from "./Icon_arrow_pre_24.svg";
 export { ReactComponent as SettingIcon } from "./Icons_settings.svg";
 export { ReactComponent as ButtonWrite52Icon } from "./btn_write_52.svg";
 export { ReactComponent as X24Icon } from "./icons_x_24.svg";
+export { ReactComponent as CameraIcon } from "./icons_camera.svg";
+export { ReactComponent as PenIcon } from "./icons_pen.svg";
+export { ReactComponent as ArrowDown16Icon } from "./Icons_Arrow_down_16.svg";
