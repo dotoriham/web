@@ -5,6 +5,7 @@ export interface MobileHeaderState {
   isShowRightMenu?: boolean;
   leftMenu?: "back" | "menu" | null;
   title?: string;
+  searchBar?: boolean;
 }
 
 const initialState: MobileHeaderState = {

@@ -8,10 +8,11 @@ export default function useMobileHeader({
   isShowRightMenu,
   leftMenu,
   title,
+  searchBar,
 }: Props) {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setMobileHeader({ isShowRightMenu, leftMenu, title }));
-  }, [dispatch, isShowRightMenu, leftMenu, title]);
+    dispatch(setMobileHeader({ isShowRightMenu, leftMenu, title, searchBar }));
+  }, [dispatch, isShowRightMenu, leftMenu, title, searchBar]);
 }

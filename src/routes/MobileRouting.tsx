@@ -15,7 +15,6 @@ const MobileLoginPage = lazy(
 );
 const NotFoundPage = lazy(() => import("domains/notFound/pages/NotFoundPage"));
 const TrashPage = lazy(() => import("domains/trash/pages/TrashPage"));
-const SearchPage = lazy(() => import("domains/search/pages/SearchPage"));
 const MobileDotoriPage = lazy(
   () => import("domains/dotori/pages/MobileDotoriPage")
 );
@@ -25,6 +24,9 @@ const MobileDotoriFolderPage = lazy(
 const MobileMyPage = lazy(() => import("domains/mypage/pages/MobileMyPage"));
 const MobileMakePeoplePage = lazy(
   () => import("domains/mypage/pages/MobileMakePeoplePage")
+);
+const MobileSearchPage = lazy(
+  () => import("domains/search/pages/MobileSearchPage")
 );
 
 export function PublicRouting() {
@@ -61,7 +63,7 @@ export function PrivateRouting() {
           element={<MobileDotoriFolderPage />}
         />
         <Route path={Path.TrashPage} element={<TrashPage />} />
-        <Route path={Path.SearchPage} element={<SearchPage />} />
+        <Route path={Path.SearchPage} element={<MobileSearchPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>

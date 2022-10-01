@@ -4,20 +4,39 @@ import {
   HamburgerMobileIcon,
   Search24MobileIcon,
 } from "assets/icons";
-import { useToggle } from "domains/@shared/hooks";
+import { useDebounce, useInput, useToggle } from "domains/@shared/hooks";
+import { mergeQsParserWithSearchKeys } from "domains/search/utils";
 import { palette } from "lib/styles";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Path from "routes/Path";
 import { mobileHeaderSelector } from "stores/mobileHeader";
 import styled from "styled-components";
 import MobileSidebarContainer from "../sidebar/containers/MobileSidebarContainer";
 
 function MobileHeader() {
-  const { leftMenu, isShowRightMenu, title } =
+  const { leftMenu, isShowRightMenu, title, searchBar } =
     useSelector(mobileHeaderSelector);
 
   const [isVisibleSidebar, onToggleVisibleSidebar] = useToggle(false);
   const navigate = useNavigate();
+  const [searchInput, onChangeSearchInput] = useInput("");
+
+  const debounceSearchInput = useDebounce(searchInput, 500);
+
+  useEffect(() => {
+    console.log("asd", debounceSearchInput);
+
+    if (debounceSearchInput) {
+      navigate({
+        pathname: Path.SearchPage,
+        search: mergeQsParserWithSearchKeys({
+          keyword: debounceSearchInput,
+        }),
+      });
+    }
+  }, [debounceSearchInput, navigate]);
 
   const printLeftMenu = () => {
     switch (leftMenu) {
@@ -44,11 +63,18 @@ function MobileHeader() {
       <Container>
         <Inner>
           {printLeftMenu()}
-          <Title>{title}</Title>
+          {title && <Title>{title}</Title>}
+          {searchBar && (
+            <SearchBar
+              value={searchInput}
+              onChange={onChangeSearchInput}
+              placeholder="도토리함 검색"
+            />
+          )}
 
           {isShowRightMenu && (
             <RightButtons>
-              <Search24MobileIcon />
+              <Search24MobileIcon onClick={() => navigate(Path.SearchPage)} />
               <Bell24Icon />
             </RightButtons>
           )}
@@ -97,6 +123,22 @@ const RightButtons = styled.div`
   justify-content: flex-end;
   svg {
     margin-right: 16px;
+  }
+`;
+
+const SearchBar = styled.input`
+  width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background-color: #f3f3f3;
+  margin-right: 16px;
+  font-size: 12px;
+  line-height: 1.42;
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: ${palette.grayDark};
   }
 `;
 
