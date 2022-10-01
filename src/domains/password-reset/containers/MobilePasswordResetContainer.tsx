@@ -1,8 +1,12 @@
 import { Button, Input } from "components";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import Path from "routes/Path";
 import styled from "styled-components";
 
 function MobilePasswordResetContainer() {
+  const navigate = useNavigate();
+
   return (
     <Container>
       <Input
@@ -12,7 +16,12 @@ function MobilePasswordResetContainer() {
         borderRadius="6px"
       />
       <ButtonBlock>
-        <SubmitButton width="100%" height="52px" variant="primary">
+        <SubmitButton
+          width="100%"
+          height="52px"
+          variant="primary"
+          onClick={() => navigate(Path.PasswordResetConfirmPage)}
+        >
           임시 비밀번호 발급
         </SubmitButton>
       </ButtonBlock>
