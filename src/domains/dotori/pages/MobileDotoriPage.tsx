@@ -16,6 +16,7 @@ function MobileDotoriPage() {
 const Container = styled.div`
   overflow: hidden;
   position: relative;
+  padding: 0 16px;
 `;
 
 export default MobileDotoriPage;

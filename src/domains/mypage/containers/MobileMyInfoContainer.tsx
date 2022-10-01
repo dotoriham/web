@@ -7,12 +7,12 @@ import {
 
 function MobileMyInfoContainer() {
   return (
-    <div>
+    <>
       <MyPageProfileSection />
       <MyPageSectionDivider />
       <MyPageAccountSettingSection />
       <MyPageSectionDivider />
-    </div>
+    </>
   );
 }
 
