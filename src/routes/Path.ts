@@ -13,6 +13,8 @@ enum Path {
   SignupPage = "/signup",
   LandingPage = "https://dotoriham.kr/",
   SharePage = "/share/:shareToken",
+  PasswordResetPage = "/password-reset",
+  PasswordResetConfirmPage = "/password-reset/confirm",
 
   // only Mobile
   MakePeoplePage = "/make-people",

@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { LogoMobileIMG } from "assets/images";
 import styled from "styled-components";
 import { palette } from "lib/styles";
 import GoogleLoginButton from "domains/auth/GoogleLoginButton";

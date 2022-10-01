@@ -32,6 +32,14 @@ const MobileTrashPage = lazy(
   () => import("domains/trash/pages/MobileTrashPage")
 );
 
+const MobilePasswordResetPage = lazy(
+  () => import("domains/password-reset/pages/MobilePasswordResetPage")
+);
+
+const MobilePasswordResetConfirmPage = lazy(
+  () => import("domains/password-reset/pages/MobilePasswordResetConfirmPage")
+);
+
 export function PublicRouting() {
   return (
     <Suspense fallback={<div css="min-height: 100vh" />}>
@@ -39,6 +47,14 @@ export function PublicRouting() {
         <Route path={Path.SharePage} element={<SharePage />} />
         <Route path={Path.LoginPage} element={<MobileLoginPage />} />
         <Route path={Path.SignupPage} element={<MobileSignupPage />} />
+        <Route
+          path={Path.PasswordResetPage}
+          element={<MobilePasswordResetPage />}
+        />
+        <Route
+          path={Path.PasswordResetConfirmPage}
+          element={<MobilePasswordResetConfirmPage />}
+        />
         <Route path="*" element={<Navigate replace to={Path.LoginPage} />} />
       </Routes>
     </Suspense>
