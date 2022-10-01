@@ -4,6 +4,7 @@ import { isSharePage } from "lib/utils/checkRoutePath";
 import React from "react";
 import { PrivateRouting, PublicRouting } from "routes/Routing";
 import styled from "styled-components";
+import Footer from "../footer";
 import { Header } from "../header";
 
 function DesktopLayout() {
@@ -13,6 +14,7 @@ function DesktopLayout() {
       <Container isSharePage={isSharePage()}>
         {isLogin() ? <PrivateRouting /> : <PublicRouting />}
       </Container>
+      <Footer />
     </>
   );
 }

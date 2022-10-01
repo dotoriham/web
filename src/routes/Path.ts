@@ -13,6 +13,9 @@ enum Path {
   SignupPage = "/signup",
   LandingPage = "https://dotoriham.kr/",
   SharePage = "/share/:shareToken",
+
+  // only Mobile
+  MakePeoplePage = "/make-people",
 }
 
 export default Path;

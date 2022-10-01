@@ -23,6 +23,9 @@ const MobileDotoriFolderPage = lazy(
   () => import("domains/dotori/pages/MobileDotoriFolderPage")
 );
 const MobileMyPage = lazy(() => import("domains/mypage/pages/MobileMyPage"));
+const MobileMakePeoplePage = lazy(
+  () => import("domains/mypage/pages/MobileMakePeoplePage")
+);
 
 export function PublicRouting() {
   return (
@@ -48,6 +51,7 @@ export function PrivateRouting() {
           element={<Navigate replace to={Path.DotoriPage} />}
         />
         <Route path={Path.MyPage} element={<MobileMyPage />} />
+        <Route path={Path.MakePeoplePage} element={<MobileMakePeoplePage />} />
         <Route path={Path.ProfileEditPage} element={<ProfileEditPage />} />
 
         <Route path={Path.DotoriPage} element={<MobileDotoriPage />} />

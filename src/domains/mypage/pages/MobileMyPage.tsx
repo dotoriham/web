@@ -2,6 +2,7 @@ import { DividerLine } from "components";
 import { useMobileHeader } from "domains/@shared/hooks";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Path from "routes/Path";
 import styled from "styled-components";
 import { MyPageListButton } from "../components/mobile";
 import { MobileMyInfoContainer } from "../containers";
@@ -17,7 +18,7 @@ function MobileMyPage() {
   return (
     <Container>
       <MobileMyInfoContainer />
-      <MyPageListButton onClick={() => console.log("나중에 링크")}>
+      <MyPageListButton onClick={() => navigate(Path.MakePeoplePage)}>
         만든 사람들
       </MyPageListButton>
       <DividerLine color="#f3f3f3" width="100%" />

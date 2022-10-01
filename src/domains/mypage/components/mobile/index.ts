@@ -3,3 +3,4 @@ export { default as MyPageProfileSection } from "./MyPageProfileSection";
 export { default as MyPageAccountSettingSection } from "./MyPageAccountSettingSection";
 export { default as MyPageSectionDivider } from "./MyPageSectionDivider";
 export { default as MyPageRemindChipButton } from "./MyPageRemindChipButton";
+export { default as MakePeople } from "./MakePeople";
