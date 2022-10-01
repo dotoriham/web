@@ -1,6 +1,7 @@
 import { palette } from "lib/styles";
 import React from "react";
 import styled from "styled-components";
+import { logout } from "lib/utils/auth";
 
 function MobileFooter() {
   return (
@@ -12,7 +13,7 @@ function MobileFooter() {
         <Divider />
         <Text>오픈소스 라이센스</Text>
         <Divider />
-        <Text>로그아웃</Text>
+        <Text onClick={logout}>로그아웃</Text>
       </Inner>
     </Container>
   );
