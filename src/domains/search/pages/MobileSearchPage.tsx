@@ -1,5 +1,6 @@
 import { useMobileHeader } from "domains/@shared/hooks";
 import React from "react";
+import { MobileSearchDotoriListContainer } from "../containers";
 
 function MobileSearchPage() {
   useMobileHeader({
@@ -7,7 +8,11 @@ function MobileSearchPage() {
     searchBar: true,
   });
 
-  return <div>MobileSearchPage</div>;
+  return (
+    <div>
+      <MobileSearchDotoriListContainer />
+    </div>
+  );
 }
 
 export default MobileSearchPage;

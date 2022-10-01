@@ -5,6 +5,7 @@ import {
   Search24MobileIcon,
 } from "assets/icons";
 import { useDebounce, useInput, useToggle } from "domains/@shared/hooks";
+import { useSearchQueryParams } from "domains/search/hooks";
 import { mergeQsParserWithSearchKeys } from "domains/search/utils";
 import { palette } from "lib/styles";
 import { useEffect } from "react";
@@ -21,20 +22,23 @@ function MobileHeader() {
 
   const [isVisibleSidebar, onToggleVisibleSidebar] = useToggle(false);
   const navigate = useNavigate();
-  const [searchInput, onChangeSearchInput] = useInput("");
+  const { keyword } = useSearchQueryParams();
+  const [searchInput, onChangeSearchInput] = useInput(keyword || "");
 
   const debounceSearchInput = useDebounce(searchInput, 500);
 
   useEffect(() => {
-    console.log("asd", debounceSearchInput);
-
     if (debounceSearchInput) {
-      navigate({
-        pathname: Path.SearchPage,
-        search: mergeQsParserWithSearchKeys({
-          keyword: debounceSearchInput,
-        }),
-      });
+      navigate(
+        {
+          search: mergeQsParserWithSearchKeys({
+            keyword: debounceSearchInput,
+          }),
+        },
+        {
+          replace: true,
+        }
+      );
     }
   }, [debounceSearchInput, navigate]);
 

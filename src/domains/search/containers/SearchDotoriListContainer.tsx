@@ -10,7 +10,7 @@ import {
   SearchDotoriList,
   SearchDotoriSelect,
   SearchDotoriSort,
-} from "../components";
+} from "../components/desktop";
 import { DotoriUiModel, toDotoriUiModel } from "../models/dotori.model";
 import { useSearchDotoriListService } from "../services";
 
