@@ -56,3 +56,4 @@ export { ReactComponent as X24Icon } from "./icons_x_24.svg";
 export { ReactComponent as CameraIcon } from "./icons_camera.svg";
 export { ReactComponent as PenIcon } from "./icons_pen.svg";
 export { ReactComponent as ArrowDown16Icon } from "./Icons_Arrow_down_16.svg";
+export { ReactComponent as MobileLogoIcon } from "./Images_logo-mobile-56.svg";

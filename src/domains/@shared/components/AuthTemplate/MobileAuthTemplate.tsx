@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { palette } from "lib/styles";
 import GoogleLoginButton from "domains/auth/GoogleLoginButton";
 import { MobileAuthDivider } from "../AuthDivider";
+import { MobileLogoIcon } from "assets/icons";
 
 interface Props {
   children: ReactNode;
@@ -13,7 +14,7 @@ function MobileAuthTemplate({ children }: Props) {
   return (
     <Container>
       <Title>함께 쓰는 북마크 아카이빙</Title>
-      <img src={LogoMobileIMG} alt="도토리함 로고" />
+      <MobileLogoIcon />
       <GoogleLoginButton className="googleLoginBtn" />
       <MobileAuthDivider />
       {children}
@@ -25,6 +26,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0 16px;
   .googleLoginBtn {
     border-color: ${palette.grayLight};
     color: ${palette.grayDarker};
@@ -34,7 +36,7 @@ const Container = styled.div`
     }
   }
 
-  > img {
+  > svg {
     margin-bottom: 60px;
   }
 `;
