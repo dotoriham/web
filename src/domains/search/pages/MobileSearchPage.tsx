@@ -9,9 +9,9 @@ function MobileSearchPage() {
   });
 
   return (
-    <div>
+    <>
       <MobileSearchDotoriListContainer />
-    </div>
+    </>
   );
 }
 
