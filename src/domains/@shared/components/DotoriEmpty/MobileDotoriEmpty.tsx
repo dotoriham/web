@@ -3,11 +3,15 @@ import { palette } from "lib/styles";
 import React from "react";
 import styled from "styled-components";
 
-function SearchDotoriEmpty() {
+interface Props {
+  text: string;
+}
+
+function MobileDotoriEmpty({ text }: Props) {
   return (
     <Container>
       <SymbolGray96Icon />
-      <EmptyText>찾으시는 도토리가 없어요!</EmptyText>
+      <EmptyText>{text}</EmptyText>
     </Container>
   );
 }
@@ -27,4 +31,4 @@ const EmptyText = styled.span`
   margin-top: 16px;
 `;
 
-export default SearchDotoriEmpty;
+export default MobileDotoriEmpty;

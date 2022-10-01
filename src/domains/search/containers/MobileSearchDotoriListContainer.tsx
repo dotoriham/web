@@ -1,9 +1,6 @@
+import { MobileDotoriEmpty } from "domains/@shared/components";
 import React from "react";
-import {
-  SearchDotoriEmpty,
-  SearchDotoriFilter,
-  SearchDotoriList,
-} from "../components/mobile";
+import { SearchDotoriFilter, SearchDotoriList } from "../components/mobile";
 import useInfiniteSearchDotoriListService from "../services/useInfiniteSearchDotoriListService";
 
 function MobileSearchDotoriListContainer() {
@@ -12,7 +9,8 @@ function MobileSearchDotoriListContainer() {
 
   const dotoris = data?.pages.flatMap((page) => page.content) ?? [];
 
-  if (isFetched && dotoris.length === 0) return <SearchDotoriEmpty />;
+  if (isFetched && dotoris.length === 0)
+    return <MobileDotoriEmpty text="찾으시는 도토리가 없어요!" />;
 
   return (
     <>
