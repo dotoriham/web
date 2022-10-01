@@ -23,7 +23,7 @@ const defaultDotoriAddFormState = {
   id: uuidv4(),
   link: "",
   title: "",
-  remind: false,
+  remind: true,
   description: "",
   image: "",
 };

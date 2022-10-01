@@ -1,4 +1,5 @@
 import {
+  BellDisabledIcon,
   BellSelectedIcon,
   BellUnSelectedIcon,
   ProgressDisabled16Icon,
@@ -185,14 +186,14 @@ function DotoriAddForm({ dotoriForm, onChangeForm }: Props) {
                 <Input
                   width="200px"
                   height="28px"
-                  placeholder="og:title"
+                  placeholder="제목을 입력하세요"
                   name="title"
                   value={title}
                   disabled={isDisabledForm}
                   onChange={onChangeNewForm}
                 />
                 <DescriptionInput
-                  placeholder="og:description"
+                  placeholder="내용을 입력하세요"
                   ref={heightRef}
                   name="description"
                   value={description}
@@ -200,12 +201,16 @@ function DotoriAddForm({ dotoriForm, onChangeForm }: Props) {
                   onChange={onChangeNewForm}
                 />
                 <RemindBox>
-                  <div className="txt">리마인드 on/off</div>
+                  <div className="txt">리마인드 알림</div>
 
                   <div className="ico" onClick={onRemindToggle}>
                     {remind ? (
                       <>
-                        <BellSelectedIcon />
+                        {isDisabledForm ? (
+                          <BellDisabledIcon />
+                        ) : (
+                          <BellSelectedIcon />
+                        )}
                         on
                       </>
                     ) : (
@@ -270,7 +275,7 @@ const OpenGraphBox = styled.div<{ isDisabled: boolean }>`
   ${({ isDisabled }) =>
     isDisabled &&
     css`
-      opacity: 0.3;
+      opacity: 0.5;
       cursor: not-allowed;
     `}
 `;
@@ -293,6 +298,14 @@ const Image = styled.img`
 const InputBox = styled.div`
   input {
     margin-bottom: 8px;
+    &::placeholder {
+      color: ${palette.gray};
+    }
+  }
+  textarea {
+    &::placeholder {
+      color: ${palette.gray};
+    }
   }
 `;
 

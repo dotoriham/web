@@ -10,6 +10,7 @@ export { ReactComponent as ArrowUp16Icon } from "./Icons_Arrow_up_16.svg";
 export { ReactComponent as Bell24Icon } from "./Icons_Bell_24.svg";
 export { ReactComponent as BellSelectedIcon } from "./Icons_Bell_selected.svg";
 export { ReactComponent as BellUnSelectedIcon } from "./Icons_Bell_unselected.svg";
+export { ReactComponent as BellDisabledIcon } from "./Property 1=disabled.svg";
 export { ReactComponent as CheckBox24Icon } from "./Icons_Checkbox_24.svg";
 export { ReactComponent as CheckBox36Icon } from "./Icons_Checkbox_36.svg";
 export { ReactComponent as CheckBoxSelected24Icon } from "./Icons_Checkbox_selected_24.svg";
