@@ -4,17 +4,15 @@ import {
   HamburgerMobileIcon,
   Search24MobileIcon,
 } from "assets/icons";
-import { useDebounce, useInput, useToggle } from "domains/@shared/hooks";
-import { useSearchQueryParams } from "domains/search/hooks";
-import { mergeQsParserWithSearchKeys } from "domains/search/utils";
+import { useToggle } from "domains/@shared/hooks";
 import { palette } from "lib/styles";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Path from "routes/Path";
 import { mobileHeaderSelector } from "stores/mobileHeader";
 import styled from "styled-components";
 import MobileSidebarContainer from "../sidebar/containers/MobileSidebarContainer";
+import MobileSearchBar from "./MobileSearchBar";
 
 function MobileHeader() {
   const { leftMenu, isShowRightMenu, title, searchBar } =
@@ -22,23 +20,6 @@ function MobileHeader() {
 
   const [isVisibleSidebar, onToggleVisibleSidebar] = useToggle(false);
   const navigate = useNavigate();
-  const { keyword } = useSearchQueryParams();
-  const [searchInput, onChangeSearchInput] = useInput(keyword || "");
-
-  const debounceSearchInput = useDebounce(searchInput, 500);
-
-  useEffect(() => {
-    navigate(
-      {
-        search: mergeQsParserWithSearchKeys({
-          keyword: debounceSearchInput,
-        }),
-      },
-      {
-        replace: true,
-      }
-    );
-  }, [debounceSearchInput, navigate]);
 
   const printLeftMenu = () => {
     switch (leftMenu) {
@@ -65,14 +46,10 @@ function MobileHeader() {
       <Container>
         <Inner>
           {printLeftMenu()}
+
           {title && <Title>{title}</Title>}
-          {searchBar && (
-            <SearchBar
-              value={searchInput}
-              onChange={onChangeSearchInput}
-              placeholder="도토리함 검색"
-            />
-          )}
+
+          {searchBar && <MobileSearchBar />}
 
           {isShowRightMenu && (
             <RightButtons>
@@ -125,22 +102,6 @@ const RightButtons = styled.div`
   justify-content: flex-end;
   svg {
     margin-right: 16px;
-  }
-`;
-
-const SearchBar = styled.input`
-  width: 100%;
-  padding: 6px 10px;
-  border-radius: 6px;
-  background-color: #f3f3f3;
-  margin-right: 16px;
-  font-size: 12px;
-  line-height: 1.42;
-  &:focus {
-    outline: none;
-  }
-  &::placeholder {
-    color: ${palette.grayDark};
   }
 `;
 
