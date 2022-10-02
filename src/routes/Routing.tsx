@@ -9,7 +9,7 @@ const ProfileEditPage = lazy(() => import("domains/mypage-edit/pages/ProfileEdit
 const SignupPage = lazy(() => import("domains/signup/pages/SignupPage"));
 const LoginPage = lazy(() => import("domains/login/pages/LoginPage"));
 const MyPage = lazy(() => import("domains/mypage/pages/MyPage"));
-const NotFoundPage = lazy(() => import("domains/notFound/pages/NotFoundPage"));
+const NotFoundPage = lazy(() => import("domains/@global/notFound/NotFoundPage"));
 const TrashPage = lazy(() => import("domains/trash/pages/TrashPage"));
 const SearchPage = lazy(() => import("domains/search/pages/SearchPage"));
 const DotoriPage = lazy(() => import("domains/dotori/pages/DotoriPage"));

@@ -13,7 +13,6 @@ const MobileSignupPage = lazy(
 const MobileLoginPage = lazy(
   () => import("domains/login/pages/MobileLoginPage")
 );
-const NotFoundPage = lazy(() => import("domains/notFound/pages/NotFoundPage"));
 const MobileDotoriPage = lazy(
   () => import("domains/dotori/pages/MobileDotoriPage")
 );
@@ -38,6 +37,10 @@ const MobilePasswordResetPage = lazy(
 
 const MobilePasswordResetConfirmPage = lazy(
   () => import("domains/password-reset/pages/MobilePasswordResetConfirmPage")
+);
+
+const MobileNotFoundPage = lazy(
+  () => import("domains/@global/notFound/MobileNotFoundPage")
 );
 
 export function PublicRouting() {
@@ -83,7 +86,7 @@ export function PrivateRouting() {
         />
         <Route path={Path.TrashPage} element={<MobileTrashPage />} />
         <Route path={Path.SearchPage} element={<MobileSearchPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path="*" element={<MobileNotFoundPage />} />
       </Routes>
     </Suspense>
   );
