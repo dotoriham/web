@@ -58,3 +58,5 @@ export { ReactComponent as PenIcon } from "./icons_pen.svg";
 export { ReactComponent as ArrowDown16Icon } from "./Icons_Arrow_down_16.svg";
 export { ReactComponent as MobileLogoIcon } from "./Images_logo-mobile-56.svg";
 export { ReactComponent as SymbolProgressIcon } from "./Frame 1704.svg";
+export { ReactComponent as EyeActive24Icon } from "./Icons_Eye_active_24.svg";
+export { ReactComponent as EyeInActive24Icon } from "./Icons_Eye_inactive_24.svg";

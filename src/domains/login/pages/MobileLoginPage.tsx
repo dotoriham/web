@@ -5,7 +5,7 @@ import {
 import { useMobileHeader } from "domains/@shared/hooks";
 import React from "react";
 import Path from "routes/Path";
-import { LoginForm } from "../components/mobile";
+import { MobileLoginFormContainer } from "../containers";
 
 function MobileLoginPage() {
   useMobileHeader({
@@ -15,7 +15,7 @@ function MobileLoginPage() {
 
   return (
     <MobileAuthTemplate>
-      <LoginForm />
+      <MobileLoginFormContainer />
       <MobileAuthLinked
         link={Path.PasswordResetPage}
         text="비밀번호를 잊으셨나요?"
