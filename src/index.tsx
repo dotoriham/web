@@ -7,6 +7,10 @@ import { BrowserRouter } from "react-router-dom";
 import store from "stores";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import ReactGA from "react-ga";
+import { TRACKING_ID } from "lib/constants";
+
+ReactGA.initialize(TRACKING_ID);
 
 getInitialUserState();
 

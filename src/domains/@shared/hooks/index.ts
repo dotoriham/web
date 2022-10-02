@@ -10,3 +10,4 @@ export { default as useQueryString } from "./useQueryString";
 export { default as useMobileHeader } from "./useMobileHeader";
 export { default as useDragScroll } from "./useDragScroll";
 export { default as useDebounce } from "./useDebounce";
+export { default as useRouteChageTracker } from "./useRouteChangeTracker";

@@ -9,12 +9,14 @@ import useInitialRegisterEffect from "domains/@shared/hooks/useInitialRegisterEf
 import { firebaseConfig } from "lib/firebase";
 import { DeviceDetectProvider } from "domains/@shared/contexts";
 import { AppLayout } from "domains/@global/layouts";
+import useRouteChangeTracker from "domains/@shared/hooks/useRouteChangeTracker";
 
 initializeApp(firebaseConfig);
 
 function App() {
   useLoggedInUserReplace();
   useInitialRegisterEffect();
+  useRouteChangeTracker();
 
   return (
     <DeviceDetectProvider>
