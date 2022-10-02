@@ -16,6 +16,8 @@ function MobileDotoriFolderPage() {
 
 const Container = styled.div`
   position: relative;
+  padding: 0 16px;
+  overflow: hidden;
 `;
 
 export default MobileDotoriFolderPage;
