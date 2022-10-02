@@ -17,6 +17,7 @@ const StyledLinked = styled(Link)`
   color: ${palette.grayDark};
   text-decoration: underline;
   line-height: 1.75;
+  margin-bottom: 12px;
 `;
 
 export default MobileAuthLinked;

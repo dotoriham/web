@@ -20,6 +20,8 @@ function MobileLoginPage() {
         link={Path.PasswordResetPage}
         text="비밀번호를 잊으셨나요?"
       />
+
+      <MobileAuthLinked link={Path.SignupPage} text="처음 방문하셨나요??" />
     </MobileAuthTemplate>
   );
 }
