@@ -28,18 +28,16 @@ function MobileHeader() {
   const debounceSearchInput = useDebounce(searchInput, 500);
 
   useEffect(() => {
-    if (debounceSearchInput) {
-      navigate(
-        {
-          search: mergeQsParserWithSearchKeys({
-            keyword: debounceSearchInput,
-          }),
-        },
-        {
-          replace: true,
-        }
-      );
-    }
+    navigate(
+      {
+        search: mergeQsParserWithSearchKeys({
+          keyword: debounceSearchInput,
+        }),
+      },
+      {
+        replace: true,
+      }
+    );
   }, [debounceSearchInput, navigate]);
 
   const printLeftMenu = () => {
