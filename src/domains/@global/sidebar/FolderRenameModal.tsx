@@ -64,13 +64,12 @@ function FolderRenameModal({
           <X16Icon onClick={onToggleModal} />
         </CloseButtonBox>
 
-        <RenameForm>
+        <RenameForm onSubmit={onSubmitFolderRename}>
           <EmojiBox
             onClick={(e) => onToggleEmojiPicker(e, !emojiPickerVisible)}
           >
             <FolderEmoji emoji={newFolderEmoji.unicode} />
           </EmojiBox>
-
           <FolderNameInput
             type="text"
             width="192px"
@@ -78,13 +77,12 @@ function FolderRenameModal({
             value={newFolderName}
             onChange={onChangeFolderName}
           />
-
           <Button
+            type="submit"
             variant="primary"
             width="72px"
             height="28px"
             className="renameBtn"
-            onClick={onSubmitFolderRename}
           >
             변경
           </Button>
@@ -137,7 +135,7 @@ const CloseButtonBox = styled.div`
   }
 `;
 
-const RenameForm = styled.div`
+const RenameForm = styled.form`
   display: flex;
   align-items: center;
   .renameBtn {
