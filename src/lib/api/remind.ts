@@ -14,8 +14,8 @@ export const setRemindAPI = async (dotoriId: string) => {
 };
 
 // 리마인드 삭제
-export const deleteRemindAPI = async (bookmarkId: string) => {
-  const response = await client.get(`/api/v1/remindOff/${bookmarkId}`);
+export const deleteRemindAPI = async (dotoriId: string) => {
+  const response = await client.get(`/api/v1/bookmark/remindOff/${dotoriId}`);
   return response.data;
 };
 
