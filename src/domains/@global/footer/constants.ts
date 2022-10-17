@@ -16,8 +16,8 @@ export const DOTORIHAM_MAKE_PEOPLE = [
   },
   {
     field: "FRONT",
-    name: "박제구",
-    activity: false,
+    name: "이지호",
+    activity: true,
   },
   {
     field: "BACK",
