@@ -54,7 +54,7 @@ function SearchDotoriList({
     mutateMoveDotori(requestData);
   };
 
-  const onRemindToggle = (id: string, remindTime: string | null) => {
+  const onRemindToggle = (id: string, isRemind: boolean) => {
     if (!remindToggle) {
       remindRecommendationToast();
       return;
@@ -62,7 +62,7 @@ function SearchDotoriList({
 
     const requestData = {
       dotoriId: id,
-      remind: !!remindTime,
+      remind: isRemind,
     };
 
     mutateRemindToggleDotori(requestData);
@@ -73,7 +73,7 @@ function SearchDotoriList({
       {dotoriList.length === 0 && <DotoriBlankSlate path="search" />}
 
       {dotoriList.map((dotori) => {
-        const { title, description, link, image, remindTime, id, checked } =
+        const { title, description, link, image, id, checked, remindList } =
           dotori;
 
         return (
@@ -96,14 +96,14 @@ function SearchDotoriList({
                   isActiveDotoriMenu.id === dotori.id &&
                   isActiveDotoriMenu.isOpen
                 }
-                isRemind={!!remindTime}
+                isRemind={!!remindList.length}
                 link={link}
                 onActiveDotoriMenu={(isOpen: boolean) =>
                   onActiveDotoriMenu(dotori, isOpen)
                 }
                 onDeleteDotori={onDeleteDotori}
                 onMoveDotori={onMoveDotori}
-                onRemindToggle={() => onRemindToggle(id, remindTime)}
+                onRemindToggle={() => onRemindToggle(id, !!remindList.length)}
               />
             }
           />

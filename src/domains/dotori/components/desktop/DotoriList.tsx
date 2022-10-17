@@ -56,7 +56,7 @@ function DotoriList({ path }: { path: DotoriPathTypes }) {
     mutateMoveDotori(requestData);
   };
 
-  const onRemindToggle = (id: string, remindTime: string | null) => {
+  const onRemindToggle = (id: string, isRemind: boolean) => {
     if (!remindToggle) {
       remindRecommendationToast();
       return;
@@ -64,7 +64,7 @@ function DotoriList({ path }: { path: DotoriPathTypes }) {
 
     const requestData = {
       dotoriId: id,
-      remind: !!remindTime,
+      remind: isRemind,
     };
 
     mutateRemindToggleDotori(requestData);
@@ -88,7 +88,7 @@ function DotoriList({ path }: { path: DotoriPathTypes }) {
       {isDotoriPage && <DotoriAddButton onClick={onToggleAddModal} />}
 
       {dotoris.map((dotori) => {
-        const { title, description, link, image, remindTime, id, checked } =
+        const { title, description, link, image, remindList, id, checked } =
           dotori;
         return (
           <DotoriCard
@@ -108,14 +108,14 @@ function DotoriList({ path }: { path: DotoriPathTypes }) {
                   isActiveDotoriMenu.id === dotori.id &&
                   isActiveDotoriMenu.isOpen
                 }
-                isRemind={!!remindTime}
+                isRemind={!!remindList.length}
                 link={link}
                 onActiveDotoriMenu={(isOpen: boolean) =>
                   onActiveDotoriMenu(dotori, isOpen)
                 }
                 onDeleteDotori={onDeleteDotori}
                 onMoveDotori={onMoveDotori}
-                onRemindToggle={() => onRemindToggle(id, remindTime)}
+                onRemindToggle={() => onRemindToggle(id, !!remindList.length)}
               />
             }
           />

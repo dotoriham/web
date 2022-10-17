@@ -47,7 +47,7 @@ export const initialDotoriState: IDotoriItem = {
   folderEmoji: "",
   image: "",
   link: "",
-  remindTime: "",
+  remindList: [],
   userId: 0,
   nickname: "",
 };
