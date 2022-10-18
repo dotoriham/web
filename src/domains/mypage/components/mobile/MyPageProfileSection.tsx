@@ -1,24 +1,77 @@
 import { CameraIcon, PenIcon } from "assets/icons";
+import { useToast, useToggle } from "domains/@shared/hooks";
+import { DEFAULT_IMAGE_FILE_NAME } from "domains/mypage/constants";
+import { nicknameChangeAPI, nicknameCheckAPI } from "lib/api/user";
 import { palette } from "lib/styles";
-import React from "react";
+import userStorage from "lib/utils/userStorage";
+import React, { useState, useCallback } from "react";
+import { useMutation } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser, userSelector } from "stores/user";
 import styled from "styled-components";
+import ProfileNicknameForm from "./ProfileNicknameForm";
 
 function MyPageProfileSection() {
+  const user = useSelector(userSelector);
+  const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isNicknameEdit, onToggleNicknameEdit] = useToggle(false);
+  const [form, setForm] = useState({
+    profileImage: user.image,
+    imageFileName: DEFAULT_IMAGE_FILE_NAME,
+    nickname: user.name,
+  });
+  const { editProfileToast } = useToast();
+  const { nickname, profileImage } = form;
+
+  const onChangeNickname = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setForm((prevForm) => ({ ...prevForm, nickname: e.target.value }));
+    },
+    []
+  );
+
+  const { mutate: mutateNickname } = useMutation(
+    () => nicknameCheckAPI(nickname),
+    {
+      onSuccess: async () => {
+        await nicknameChangeAPI(nickname);
+        const newUserInfo = {
+          ...user,
+          name: nickname,
+        };
+        dispatch(setUser(newUserInfo));
+        userStorage.set(newUserInfo);
+        editProfileToast();
+        onToggleNicknameEdit();
+      },
+      onError: () => {
+        setErrorMessage("이미 사용중인 닉네임입니다.");
+      },
+    }
+  );
+
   return (
     <Container>
       <Inner>
         <ProfileImageBox>
-          <ProfileImage
-            src="https://yapp-bucket-test.s3.ap-northeast-2.amazonaws.com/static/2e6b4adc-6c93-4351-8442-9aab32e40b48"
-            alt="프로필 이미지"
-          />
+          <ProfileImage src={profileImage} alt="프로필 이미지" />
           <CameraIcon />
         </ProfileImageBox>
 
-        <NicknameBox>
-          <Nickname>닉네임</Nickname>
-          <PenIcon />
-        </NicknameBox>
+        {isNicknameEdit ? (
+          <ProfileNicknameForm
+            onEditNickname={mutateNickname}
+            onChangeNickname={onChangeNickname}
+            errorMessage={errorMessage}
+            nickname={nickname}
+          />
+        ) : (
+          <NicknameBox>
+            <Nickname>{user.name}</Nickname>
+            <PenIcon onClick={onToggleNicknameEdit} />
+          </NicknameBox>
+        )}
       </Inner>
     </Container>
   );
