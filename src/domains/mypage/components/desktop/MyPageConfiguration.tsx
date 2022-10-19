@@ -3,8 +3,8 @@ import SwitchButton from "components/Button/SwitchButton";
 import { palette } from "lib/styles/palette";
 import React from "react";
 import styled from "styled-components";
-import { REMIND_CYCLE } from "./constants";
-import useRemindSetting from "./hooks/useRemindSetting";
+import { REMIND_CYCLE } from "../../constants";
+import useRemindSetting from "../../hooks/useRemindSetting";
 import MyPageHead from "./MyPageHead";
 import RemindChipButton from "./RemindChipButton";
 

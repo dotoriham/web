@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userSelector } from "stores/user";
 import styled from "styled-components";
-import { DEFAULT_IMAGE_FILE_NAME } from "./constants";
+import { DEFAULT_IMAGE_FILE_NAME } from "../../constants";
 import ProfileImageForm from "./ProfileImageForm";
 import ProfileNicknameForm from "./ProfileNicknameForm";
 import { setUser } from "stores/user";

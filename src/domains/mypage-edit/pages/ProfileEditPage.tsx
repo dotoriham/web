@@ -1,6 +1,8 @@
-import MyPageHead from "domains/mypage/MyPageHead";
-import MyPageTemplate from "domains/mypage/MyPageTemplate";
-import ProfileEditForm from "domains/mypage/ProfileEditForm";
+import {
+  MyPageHead,
+  MyPageTemplate,
+  ProfileEditForm,
+} from "domains/mypage/components/desktop";
 import React from "react";
 import styled from "styled-components";
 
