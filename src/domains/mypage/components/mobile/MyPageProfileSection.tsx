@@ -1,7 +1,12 @@
 import { CameraIcon, PenIcon } from "assets/icons";
 import { useToast, useToggle } from "domains/@shared/hooks";
 import { DEFAULT_IMAGE_FILE_NAME } from "domains/mypage/constants";
-import { nicknameChangeAPI, nicknameCheckAPI } from "lib/api/user";
+import {
+  changeProfileAPI,
+  nicknameChangeAPI,
+  nicknameCheckAPI,
+  uploadProfileImageAPI,
+} from "lib/api/user";
 import { palette } from "lib/styles";
 import userStorage from "lib/utils/userStorage";
 import React, { useState, useCallback } from "react";
@@ -51,12 +56,85 @@ function MyPageProfileSection() {
     }
   );
 
+  // 프로필 이미지, 이름 상태 변경
+  const onChangeProfileImage = useCallback(
+    (
+      newImg: string,
+      newFileName: string | undefined = DEFAULT_IMAGE_FILE_NAME
+    ) => {
+      setForm((prevForm) => ({
+        ...prevForm,
+        profileImage: newImg,
+        imageFileName: newFileName,
+      }));
+    },
+    []
+  );
+
+  // 프로필 이미지 업로드
+  const onImageUpload = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files !== null) {
+        if (e.target.files[0].size > 10000000) {
+          alert("파일 용량이 10MB를 초과하였습니다.");
+          return;
+        }
+
+        const fd = new FormData();
+        fd.append("image", e.target.files[0]);
+        try {
+          const data = await uploadProfileImageAPI(fd);
+          onChangeProfileImage(data.imageUrl, e.target.files[0].name);
+          console.log(data);
+        } catch (err) {
+          console.log(err);
+          alert("이미지 업로드에 실패했습니다.");
+        }
+      }
+    },
+    [onChangeProfileImage]
+  );
+
+  const { mutate: mutateProfile } = useMutation(
+    () => changeProfileAPI(profileImage, nickname),
+    {
+      onSuccess: async () => {
+        const newUserInfo = {
+          ...user,
+          image: profileImage,
+          name: nickname,
+        };
+        dispatch(setUser(newUserInfo));
+        userStorage.set(newUserInfo);
+        editProfileToast();
+      },
+      onError: (error: any) => {
+        setErrorMessage(error.message);
+      },
+    }
+  );
+
+  const onSubmit = useCallback(
+    async (e: React.ChangeEvent<HTMLInputElement>) => {
+      await onImageUpload(e);
+      mutateProfile();
+    },
+    [onImageUpload, mutateProfile]
+  );
+
   return (
     <Container>
       <Inner>
         <ProfileImageBox>
-          <ProfileImage src={profileImage} alt="프로필 이미지" />
-          <CameraIcon />
+          <label htmlFor="profile-image-upload">
+            <ProfileImage src={profileImage} alt="프로필 이미지" />
+            <CameraIcon />
+            <FileInputStyled
+              type="file"
+              id="profile-image-upload"
+              onChange={onSubmit}
+            />
+          </label>
         </ProfileImageBox>
 
         {isNicknameEdit ? (
@@ -121,6 +199,10 @@ const Nickname = styled.span`
   line-height: 23px;
   margin-right: 4px;
   font-weight: 500;
+`;
+
+const FileInputStyled = styled.input`
+  display: none; ;
 `;
 
 export default MyPageProfileSection;
