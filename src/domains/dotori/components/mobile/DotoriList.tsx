@@ -1,6 +1,8 @@
 import { MobileDotoriCard } from "domains/@shared/components";
 import { useInfiniteScroll } from "domains/@shared/hooks/useInfiniteScroll";
 import React from "react";
+import { useSelector } from "react-redux";
+import { userSelector } from "stores/user";
 import { Dotori } from "types/dotori";
 
 interface Props {
@@ -10,7 +12,7 @@ interface Props {
 
 function DotoriList({ dotoris, fetchNextPage }: Props) {
   const [subscribe] = useInfiniteScroll(fetchNextPage);
-
+  const { name, image: profileImg } = useSelector(userSelector);
   return (
     <div>
       {dotoris.map((dotori) => {
@@ -23,8 +25,8 @@ function DotoriList({ dotoris, fetchNextPage }: Props) {
             description={description}
             imageSrc={image}
             onClickLink={() => {}}
-            profileName="프로필 이름"
-            profileImageSrc="https://yapp-bucket-test.s3.ap-northeast-2.amazonaws.com/static/2e6b4adc-6c93-4351-8442-9aab32e40b48"
+            profileName={name}
+            profileImageSrc={profileImg}
           />
         );
       })}
