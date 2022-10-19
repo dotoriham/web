@@ -153,6 +153,7 @@ function FolderList() {
     try {
       await moveFolderAPI(body);
       queryClient.invalidateQueries(QueryKey.CHILD_FOLDER_LIST);
+      queryClient.invalidateQueries(QueryKey.PATH_PATH_LIST);
     } catch (e) {
       console.log("폴더 이동에 실패했습니다.");
     }
