@@ -2,7 +2,7 @@ import useOutSideClick from "domains/@shared/hooks/useOutSideClick";
 import { palette } from "lib/styles/palette";
 import React from "react";
 import styled from "styled-components";
-import { profilePaletteColors } from "./constants";
+import { profilePaletteColors } from "../../constants";
 
 interface ProfileColorPaletteProps {
   isOpen: boolean;

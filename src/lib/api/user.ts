@@ -7,6 +7,13 @@ export const nicknameCheckAPI = async (nickName: string) => {
   return response.data;
 };
 
+export const nicknameChangeAPI = async (nickName: string) => {
+  const response = await client.post("/api/v1/user/nickNameChange", {
+    nickName,
+  });
+  return response.data;
+};
+
 export const uploadProfileImageAPI = async (image: FormData) => {
   const response = await client.post("/api/v1/user/uploadProfileImage", image, {
     headers: {

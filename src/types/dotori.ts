@@ -1,5 +1,13 @@
 import { ItemId } from "@atlaskit/tree";
 
+export interface RemindItem {
+  fcmToken: string;
+  remindCheck: boolean;
+  remindStatus: boolean;
+  remindTime: string;
+  userId: number;
+}
+
 export interface Dotori {
   clickCount: number;
   deleteTime: string;
@@ -10,7 +18,7 @@ export interface Dotori {
   folderId: ItemId;
   id: string;
   link: string;
-  remindTime: null | string;
+  remindList: RemindItem[];
   saveTime: string;
   title: string;
   userId: number;

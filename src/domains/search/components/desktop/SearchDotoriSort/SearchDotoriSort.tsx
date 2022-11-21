@@ -17,7 +17,7 @@ function SearchDotoriSort() {
   return (
     <Block>
       <RemindToggleStyled>
-        <RemindToggleText>리마인드 도토리</RemindToggleText>
+        <RemindToggleText>리마인드 only</RemindToggleText>
         <SwitchButton
           isChecked={remind}
           onToggle={() => {

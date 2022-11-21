@@ -43,6 +43,7 @@ export default function useRenameFolder(folderId: ItemId) {
           )
         );
         queryClient.invalidateQueries(QueryKey.CHILD_FOLDER_LIST);
+        queryClient.invalidateQueries(QueryKey.PATH_PATH_LIST);
       },
       onError: () => {
         alert("폴더 이름 변경에 실패했습니다. 잠시 후 다시 시도해 주세요");

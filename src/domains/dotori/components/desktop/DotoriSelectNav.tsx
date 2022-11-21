@@ -79,6 +79,7 @@ const SelectOption = styled.div`
   .option {
     height: 16px;
     margin-left: 16px;
+    font-weight: bold;
     cursor: pointer;
   }
 `;

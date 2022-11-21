@@ -1,24 +1,51 @@
 import { CameraIcon, PenIcon } from "assets/icons";
+import { useEditProfileService } from "domains/mypage/service";
 import { palette } from "lib/styles";
-import React from "react";
 import styled from "styled-components";
+import ProfileNicknameForm from "./ProfileNicknameForm";
 
 function MyPageProfileSection() {
+  const {
+    form,
+    errorMessage,
+    isNicknameEdit,
+    onToggleNicknameEdit,
+    profileImage,
+    onChangeNickname,
+    mutateNickname,
+    onSubmit,
+  } = useEditProfileService();
+
+  const { nickname } = form;
+
   return (
     <Container>
       <Inner>
         <ProfileImageBox>
-          <ProfileImage
-            src="https://yapp-bucket-test.s3.ap-northeast-2.amazonaws.com/static/2e6b4adc-6c93-4351-8442-9aab32e40b48"
-            alt="프로필 이미지"
-          />
-          <CameraIcon />
+          <label htmlFor="profile-image-upload">
+            <ProfileImage src={profileImage} alt="프로필 이미지" />
+            <CameraIcon />
+            <FileInputStyled
+              type="file"
+              id="profile-image-upload"
+              onChange={onSubmit}
+            />
+          </label>
         </ProfileImageBox>
 
-        <NicknameBox>
-          <Nickname>닉네임</Nickname>
-          <PenIcon />
-        </NicknameBox>
+        {isNicknameEdit ? (
+          <ProfileNicknameForm
+            onEditNickname={mutateNickname}
+            onChangeNickname={onChangeNickname}
+            errorMessage={errorMessage}
+            nickname={nickname}
+          />
+        ) : (
+          <NicknameBox>
+            <Nickname>{nickname}</Nickname>
+            <PenIcon onClick={onToggleNicknameEdit} />
+          </NicknameBox>
+        )}
       </Inner>
     </Container>
   );
@@ -68,6 +95,10 @@ const Nickname = styled.span`
   line-height: 23px;
   margin-right: 4px;
   font-weight: 500;
+`;
+
+const FileInputStyled = styled.input`
+  display: none; ;
 `;
 
 export default MyPageProfileSection;
