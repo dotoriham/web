@@ -62,8 +62,8 @@ const ChildFolderItemBlock = styled.div<{ isChecked: boolean }>`
 const SelectButton = styled(CheckBox)<{ active: boolean }>`
   ${({ active }) => !active && `display:none;`}
   position: absolute;
-  top: 5px;
-  left: 4px;
+  top: 8px;
+  left: 8px;
   z-index: 50;
 `;
 
