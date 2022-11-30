@@ -6,6 +6,8 @@ import ChildFolderSelectNav from "../components/ChildFolderSelectNav";
 import { ChildFolderItem } from "types/folder";
 import ChildFolderList from "../components/ChildFolderList";
 import useChildFoldersMutation from "../hooks/useChildFoldersMutation";
+import { useToggle } from "domains/@shared/hooks";
+import { SmallModal } from "components";
 
 interface Props {
   folderId: ItemId;
@@ -17,7 +19,7 @@ export interface ChildFolder extends ChildFolderItem {
 
 function ChildFoldersContainer({ folderId }: Props) {
   const [childFolderList, setChildFolderList] = useState<ChildFolder[]>([]);
-
+  const [isDeleteModal, onToggleDeleteModal] = useToggle();
   const { data } = useChildFoldersQuery(folderId);
   const { mutateChildFoldersDelete } = useChildFoldersMutation();
 
@@ -70,7 +72,7 @@ function ChildFoldersContainer({ folderId }: Props) {
         onToggleAllChildFolder={onToggleAllChildFolder}
         isAllChecked={isAllCheckedChildFolder}
         isCheckedChildFolder={isCheckedChildFolder}
-        onDeleteChildFolders={onDeleteChildFolders}
+        onToggleDeleteModal={onToggleDeleteModal}
       />
 
       <ChildFolderList
@@ -78,6 +80,17 @@ function ChildFoldersContainer({ folderId }: Props) {
         isCheckedChildFolder={isCheckedChildFolder}
         onToggleSingleChildFolder={onToggleSingleChildFolder}
       />
+
+      {isDeleteModal && (
+        <SmallModal
+          isModal={isDeleteModal}
+          onToggleModal={onToggleDeleteModal}
+          title="이 폴더를 삭제할까요?"
+          content="폴더에 있는 모든 내용이 <br /> 휴지통으로 들어가고, 30일 뒤 사라져요!"
+          buttonName="삭제"
+          onClick={onDeleteChildFolders}
+        />
+      )}
     </ChildFoldersBlock>
   );
 }

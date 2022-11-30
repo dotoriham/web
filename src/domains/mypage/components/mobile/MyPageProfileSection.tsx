@@ -1,62 +1,36 @@
 import { CameraIcon, PenIcon } from "assets/icons";
-import { useToast, useToggle } from "domains/@shared/hooks";
-import { DEFAULT_IMAGE_FILE_NAME } from "domains/mypage/constants";
-import { nicknameChangeAPI, nicknameCheckAPI } from "lib/api/user";
+import { useEditProfileService } from "domains/mypage/service";
 import { palette } from "lib/styles";
-import userStorage from "lib/utils/userStorage";
-import React, { useState, useCallback } from "react";
-import { useMutation } from "react-query";
-import { useDispatch, useSelector } from "react-redux";
-import { setUser, userSelector } from "stores/user";
 import styled from "styled-components";
 import ProfileNicknameForm from "./ProfileNicknameForm";
 
 function MyPageProfileSection() {
-  const user = useSelector(userSelector);
-  const dispatch = useDispatch();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [isNicknameEdit, onToggleNicknameEdit] = useToggle(false);
-  const [form, setForm] = useState({
-    profileImage: user.image,
-    imageFileName: DEFAULT_IMAGE_FILE_NAME,
-    nickname: user.name,
-  });
-  const { editProfileToast } = useToast();
-  const { nickname, profileImage } = form;
+  const {
+    form,
+    errorMessage,
+    isNicknameEdit,
+    onToggleNicknameEdit,
+    profileImage,
+    onChangeNickname,
+    mutateNickname,
+    onSubmit,
+  } = useEditProfileService();
 
-  const onChangeNickname = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setForm((prevForm) => ({ ...prevForm, nickname: e.target.value }));
-    },
-    []
-  );
-
-  const { mutate: mutateNickname } = useMutation(
-    () => nicknameCheckAPI(nickname),
-    {
-      onSuccess: async () => {
-        await nicknameChangeAPI(nickname);
-        const newUserInfo = {
-          ...user,
-          name: nickname,
-        };
-        dispatch(setUser(newUserInfo));
-        userStorage.set(newUserInfo);
-        editProfileToast();
-        onToggleNicknameEdit();
-      },
-      onError: () => {
-        setErrorMessage("이미 사용중인 닉네임입니다.");
-      },
-    }
-  );
+  const { nickname } = form;
 
   return (
     <Container>
       <Inner>
         <ProfileImageBox>
-          <ProfileImage src={profileImage} alt="프로필 이미지" />
-          <CameraIcon />
+          <label htmlFor="profile-image-upload">
+            <ProfileImage src={profileImage} alt="프로필 이미지" />
+            <CameraIcon />
+            <FileInputStyled
+              type="file"
+              id="profile-image-upload"
+              onChange={onSubmit}
+            />
+          </label>
         </ProfileImageBox>
 
         {isNicknameEdit ? (
@@ -68,7 +42,7 @@ function MyPageProfileSection() {
           />
         ) : (
           <NicknameBox>
-            <Nickname>{user.name}</Nickname>
+            <Nickname>{nickname}</Nickname>
             <PenIcon onClick={onToggleNicknameEdit} />
           </NicknameBox>
         )}
@@ -121,6 +95,10 @@ const Nickname = styled.span`
   line-height: 23px;
   margin-right: 4px;
   font-weight: 500;
+`;
+
+const FileInputStyled = styled.input`
+  display: none; ;
 `;
 
 export default MyPageProfileSection;

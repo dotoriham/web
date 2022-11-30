@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 interface Props {
   onToggleAllChildFolder: () => void;
-  onDeleteChildFolders: () => void;
+  onToggleDeleteModal: () => void;
   isAllChecked: boolean;
   isCheckedChildFolder: boolean;
 }
@@ -14,7 +14,7 @@ function ChildFolderSelectNav({
   isAllChecked,
   isCheckedChildFolder,
   onToggleAllChildFolder,
-  onDeleteChildFolders,
+  onToggleDeleteModal,
 }: Props) {
   return (
     <ChildFolderSelectNavBlock>
@@ -30,7 +30,7 @@ function ChildFolderSelectNav({
 
         {isCheckedChildFolder && (
           <SelectOption>
-            <Option onClick={onDeleteChildFolders}>삭제</Option>
+            <Option onClick={onToggleDeleteModal}>삭제</Option>
           </SelectOption>
         )}
       </SelectBox>
