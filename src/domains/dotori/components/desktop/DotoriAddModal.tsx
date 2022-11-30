@@ -13,20 +13,12 @@ import { addDotoriAPI } from "domains/dotori/apis/dotori";
 import DividerLine from "components/DividerLine/DividerLine";
 import { useQueryClient } from "react-query";
 import { QueryKey } from "lib/queryKey";
+import { defaultDotoriAddFormState } from "domains/dotori/utils/constants";
 
 interface Props {
   isModal: boolean;
   onToggleModal: () => void;
 }
-
-const defaultDotoriAddFormState = {
-  id: uuidv4(),
-  link: "",
-  title: "",
-  remind: true,
-  description: "",
-  image: "",
-};
 
 function DotoriAddModal({ isModal, onToggleModal }: Props) {
   const { folderId = "" } = useParams<"folderId">();
