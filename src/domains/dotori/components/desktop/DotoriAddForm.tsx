@@ -11,27 +11,19 @@ import { palette } from "lib/styles/palette";
 import TextareaAutosize from "react-textarea-autosize";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import styled, { css } from "styled-components";
-import axios from "axios";
 import { getMetaDataByUrl } from "lib/utils/getMetaData";
-import { CRAWLING_SERVER_URL } from "lib/constants";
 import { DotoriForm } from "types/dotori";
 import { useQuery } from "react-query";
 import { useInput } from "domains/@shared/hooks";
 import useQueryDebounce from "domains/@shared/hooks/useQueryDebounce";
 import LoadingIcon from "assets/images/loading.gif";
 import { DotoriDefaultImage } from "domains/@shared/components";
+import { getCrawlingData } from "domains/dotori/apis";
 
 interface Props {
   dotoriForm: DotoriForm;
   onChangeForm: (form: DotoriForm) => void;
 }
-
-const getCrawlingData = async (value: string) => {
-  const { data } = await axios.post(CRAWLING_SERVER_URL, {
-    url: value,
-  });
-  return data;
-};
 
 function useDotoriAddQuery(value: string) {
   const {
