@@ -1,4 +1,5 @@
 import { FilterMenu, IDotoriItem } from "types/dotori";
+import { v4 as uuidv4 } from "uuid";
 
 export const DOTORI_FILTER_TYPES = {
   LATEST_ORDER: "saveTime,desc" as const,
@@ -50,4 +51,13 @@ export const initialDotoriState: IDotoriItem = {
   remindList: [],
   userId: 0,
   nickname: "",
+};
+
+export const defaultDotoriAddFormState = {
+  id: uuidv4(),
+  link: "",
+  title: "",
+  remind: true,
+  description: "",
+  image: "",
 };

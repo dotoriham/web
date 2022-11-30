@@ -41,8 +41,8 @@ function ChildFolderListItem({
 }
 
 const ChildFolderItemBlock = styled.div<{ isChecked: boolean }>`
-  width: 174px;
-  height: 36px;
+  width: 201px;
+  height: 40px;
   position: relative;
   ${({ isChecked }) => !isChecked && ` border: 1px solid ${palette.grayLight};`}
   border-radius: 6px;
@@ -51,7 +51,7 @@ const ChildFolderItemBlock = styled.div<{ isChecked: boolean }>`
   justify-content: center;
   font-size: 12px;
   color: ${palette.grayDarker};
-  margin-right: 24px;
+  margin-right: 20px;
   margin-bottom: 12px;
   padding-right: 8px;
   &:nth-child(4n) {
@@ -62,8 +62,8 @@ const ChildFolderItemBlock = styled.div<{ isChecked: boolean }>`
 const SelectButton = styled(CheckBox)<{ active: boolean }>`
   ${({ active }) => !active && `display:none;`}
   position: absolute;
-  top: 5px;
-  left: 4px;
+  top: 8px;
+  left: 8px;
   z-index: 50;
 `;
 
