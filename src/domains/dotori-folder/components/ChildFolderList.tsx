@@ -8,23 +8,26 @@ interface Props {
   childFolders: ChildFolder[];
   onToggleSingleChildFolder: (childFolderId: ItemId) => void;
   isCheckedChildFolder: boolean;
+  isOpenFolderList: boolean;
 }
 
 function ChildFolderList({
   childFolders,
   isCheckedChildFolder,
   onToggleSingleChildFolder,
+  isOpenFolderList,
 }: Props) {
   return (
     <ChildFolderListBlock>
-      {childFolders.map((childFolder) => (
-        <ChildFolderListItem
-          key={childFolder.folderId}
-          childFolder={childFolder}
-          isCheckedChildFolder={isCheckedChildFolder}
-          onToggleSingleChildFolder={onToggleSingleChildFolder}
-        />
-      ))}
+      {isOpenFolderList &&
+        childFolders.map((childFolder) => (
+          <ChildFolderListItem
+            key={childFolder.folderId}
+            childFolder={childFolder}
+            isCheckedChildFolder={isCheckedChildFolder}
+            onToggleSingleChildFolder={onToggleSingleChildFolder}
+          />
+        ))}
     </ChildFolderListBlock>
   );
 }
