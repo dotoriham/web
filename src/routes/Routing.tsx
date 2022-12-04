@@ -13,6 +13,9 @@ const NotFoundPage = lazy(() => import("domains/@global/notFound/NotFoundPage"))
 const TrashPage = lazy(() => import("domains/trash/pages/TrashPage"));
 const SearchPage = lazy(() => import("domains/search/pages/SearchPage"));
 const DotoriPage = lazy(() => import("domains/dotori/pages/DotoriPage"));
+const PasswordEditPage = lazy(
+  () => import("domains/password-edit/pages/PasswordEditPage")
+);
 
 export function PublicRouting() {
   return (
@@ -40,6 +43,7 @@ export function PrivateRouting() {
         />
         <Route path={Path.MyPage} element={<MyPage />} />
         <Route path={Path.ProfileEditPage} element={<ProfileEditPage />} />
+        <Route path={Path.ProfileEditPage} element={<PasswordEditPage />} />
 
         <Route path={Path.HomePage} element={<SidebarRouteLayout />}>
           <Route path={Path.DotoriPage} element={<DotoriPage />} />
