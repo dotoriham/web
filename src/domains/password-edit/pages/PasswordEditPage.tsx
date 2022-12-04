@@ -1,7 +1,8 @@
 import React from "react";
+import { PasswordEditContainer } from "../container";
 
-function PasswordChangePage() {
-  return <div>asd</div>;
+function PasswordEditPage() {
+  return <PasswordEditContainer />;
 }
 
-export default PasswordChangePage;
+export default PasswordEditPage;
