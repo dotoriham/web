@@ -17,17 +17,20 @@ function ChildFolderList({
   onToggleSingleChildFolder,
   isOpenFolderList,
 }: Props) {
+  if (!isOpenFolderList) {
+    return null;
+  }
+
   return (
     <ChildFolderListBlock>
-      {isOpenFolderList &&
-        childFolders.map((childFolder) => (
-          <ChildFolderListItem
-            key={childFolder.folderId}
-            childFolder={childFolder}
-            isCheckedChildFolder={isCheckedChildFolder}
-            onToggleSingleChildFolder={onToggleSingleChildFolder}
-          />
-        ))}
+      {childFolders.map((childFolder) => (
+        <ChildFolderListItem
+          key={childFolder.folderId}
+          childFolder={childFolder}
+          isCheckedChildFolder={isCheckedChildFolder}
+          onToggleSingleChildFolder={onToggleSingleChildFolder}
+        />
+      ))}
     </ChildFolderListBlock>
   );
 }
