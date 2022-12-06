@@ -20,6 +20,7 @@ export interface ChildFolder extends ChildFolderItem {
 function ChildFoldersContainer({ folderId }: Props) {
   const [childFolderList, setChildFolderList] = useState<ChildFolder[]>([]);
   const [isDeleteModal, onToggleDeleteModal] = useToggle();
+  const [isOpenFolderList, onToggleFolderList] = useToggle(true);
   const { data } = useChildFoldersQuery(folderId);
   const { mutateChildFoldersDelete } = useChildFoldersMutation();
 
@@ -73,12 +74,15 @@ function ChildFoldersContainer({ folderId }: Props) {
         isAllChecked={isAllCheckedChildFolder}
         isCheckedChildFolder={isCheckedChildFolder}
         onToggleDeleteModal={onToggleDeleteModal}
+        isOpenFolderList={isOpenFolderList}
+        onToggleFolderList={onToggleFolderList}
       />
 
       <ChildFolderList
         childFolders={childFolderList}
         isCheckedChildFolder={isCheckedChildFolder}
         onToggleSingleChildFolder={onToggleSingleChildFolder}
+        isOpenFolderList={isOpenFolderList}
       />
 
       {isDeleteModal && (
