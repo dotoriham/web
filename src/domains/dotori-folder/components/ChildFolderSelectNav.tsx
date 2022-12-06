@@ -103,7 +103,7 @@ const FolderListToggleButton = styled.button`
 `;
 
 const ArrowIconBox = styled.div<{ isOpen: boolean }>`
-  ${({ isOpen }) => (isOpen ? "" : `transform: rotate(180deg);`)}
+  ${({ isOpen }) => !isOpen && `transform: rotate(180deg);`}
   transition: all ease .5s;
   display: flex;
   align-items: center;
