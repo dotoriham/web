@@ -20,6 +20,7 @@ function PasswordEditHead({ headText }: PasswordEditHeadProps) {
 
 const HeadBlock = styled.div`
   width: 100%;
+  padding-bottom: 8px;
 `;
 
 const TextBox = styled.div`
