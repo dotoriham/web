@@ -1,17 +1,25 @@
 import { Button, SmallBlackText } from "components";
 import { palette } from "lib/styles";
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import usePasswordEditForm from "../hooks/usePasswordEditForm";
 
 function PasswordEditForm() {
+  const { editPasswordForm, onChangeForm } = usePasswordEditForm();
+  const { currentPassword, newPassword, newPasswordConfirm } = editPasswordForm;
   const error = true;
   return (
     <PasswordEditFormBlock>
-      <FormBlock>
+      <InputBox>
         <FormLabel width="297px" label="현재 비밀번호" />
         <div>
-          <PasswordInput type="password" />
+          <PasswordInput
+            type="password"
+            name="currentPassword"
+            value={currentPassword}
+            onChange={onChangeForm}
+          />
           {error && (
             <WarningText>현재 비밀번호와 일치하지 않습니다.</WarningText>
           )}
@@ -22,11 +30,16 @@ function PasswordEditForm() {
             </div>
           </ForgetText>
         </div>
-      </FormBlock>
-      <FormBlock>
+      </InputBox>
+      <InputBox>
         <FormLabel width="297px" label="새 비밀번호" />
         <div>
-          <PasswordInput type="password" />
+          <PasswordInput
+            type="password"
+            name="newPassword"
+            value={newPassword}
+            onChange={onChangeForm}
+          />
           {error && (
             <WarningText>
               영문 대소문자, 숫자, 특수문자 중 2종류 이상을 조합하여 <br />
@@ -34,14 +47,19 @@ function PasswordEditForm() {
             </WarningText>
           )}
         </div>
-      </FormBlock>
-      <FormBlock>
+      </InputBox>
+      <InputBox>
         <FormLabel width="297px" label="새 비밀번호 확인" />
         <div>
-          <PasswordInput type="password" />
+          <PasswordInput
+            type="password"
+            name="newPasswordConfirm"
+            value={newPasswordConfirm}
+            onChange={onChangeForm}
+          />
           {error && <WarningText>새 비밀번호와 일치하지 않습니다.</WarningText>}
         </div>
-      </FormBlock>
+      </InputBox>
       <EditButtonGroups>
         <Button children="취소" variant="primary" width="174px" height="40px" />
         <Button
@@ -56,7 +74,7 @@ function PasswordEditForm() {
   );
 }
 
-const FormBlock = styled.div`
+const InputBox = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: 14px;
@@ -118,4 +136,4 @@ const WithdrawText = styled.div`
   color: ${palette.gray};
   font-weight: 500;
 `;
-export default PasswordEditForm;
+export default memo(PasswordEditForm);
