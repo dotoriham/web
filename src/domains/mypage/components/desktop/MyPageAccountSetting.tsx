@@ -4,12 +4,15 @@ import { palette } from "lib/styles/palette";
 import { logout } from "lib/utils/auth";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import Path from "routes/Path";
 import { userSelector } from "stores/user";
 import styled from "styled-components";
 import MyPageHead from "./MyPageHead";
 
 function MyPageAccountSetting() {
-  const { email } = useSelector(userSelector);
+  const { email, socialType } = useSelector(userSelector);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -22,8 +25,13 @@ function MyPageAccountSetting() {
 
         <AccountInfoBox>
           <SmallBlackText width="297px" label="비밀번호" />
-          {/* @TODO(dohyun) 일반계정이면 ? 비밀번호 변경 구글계정이면 ? 비밀번호 변경 불가 */}
-          <Button variant="secondary" width="174px" height="36px" disabled>
+          <Button
+            variant="secondary"
+            width="174px"
+            height="36px"
+            disabled={socialType === "google"}
+            onClick={() => navigate(Path.PasswordEditPage)}
+          >
             비밀번호 변경
           </Button>
         </AccountInfoBox>
