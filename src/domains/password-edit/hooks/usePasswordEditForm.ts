@@ -1,28 +1,17 @@
-import { useState, useCallback } from "react";
-import { useDebounce } from "domains/@shared/hooks";
+import { useDebounce, useInput } from "domains/@shared/hooks";
 
 export default function usePasswordEditForm() {
-  const [editPasswordForm, setEditPasswordForm] = useState({
-    currentPassword: "",
-    newPassword: "",
-    newPasswordConfirm: "",
-  });
+  const [currentPassword, onChangeCurrentPassword] = useInput("");
+  const [newPassword, onChangeNewPassword] = useInput("");
+  const [newPasswordConfirm, onChangeNewPasswordConfirm] = useInput("");
+  const debouncedCurrentPassword = useDebounce(currentPassword, 500);
 
-  const onChangeForm = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = e.target;
-      setEditPasswordForm({
-        ...editPasswordForm,
-        [name]: value,
-      });
-    },
-    [editPasswordForm]
-  );
-
-  const debouncedCurrentPassword = useDebounce(
-    editPasswordForm.currentPassword,
-    500
-  );
-
-  return { editPasswordForm, onChangeForm, debouncedCurrentPassword };
+  return {
+    newPassword,
+    onChangeCurrentPassword,
+    newPasswordConfirm,
+    onChangeNewPasswordConfirm,
+    onChangeNewPassword,
+    debouncedCurrentPassword,
+  };
 }
