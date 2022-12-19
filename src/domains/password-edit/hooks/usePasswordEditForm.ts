@@ -1,5 +1,5 @@
 import { useDebounce, useInput } from "domains/@shared/hooks";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useMutation } from "react-query";
 import usePasswordValidation from "./usePasswordValidation";
 import useToast from "domains/@shared/hooks/useToast";
@@ -64,6 +64,22 @@ export default function usePasswordEditForm() {
     }
   );
 
+  const disableButton = useMemo(() => {
+    return (currentPasswordError ||
+      newPasswordError ||
+      newPasswordConfirmError ||
+      !currentPassword ||
+      !newPassword ||
+      !newPasswordConfirm) as boolean;
+  }, [
+    currentPassword,
+    currentPasswordError,
+    newPassword,
+    newPasswordConfirm,
+    newPasswordConfirmError,
+    newPasswordError,
+  ]);
+
   return {
     newPassword,
     onChangeCurrentPassword,
@@ -77,5 +93,6 @@ export default function usePasswordEditForm() {
     newPasswordConfirmError,
     newPasswordError,
     mutatePasswordEdit,
+    disableButton,
   };
 }
