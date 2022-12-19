@@ -6,9 +6,19 @@ import styled from "styled-components";
 import usePasswordEditForm from "../hooks/usePasswordEditForm";
 
 function PasswordEditForm() {
-  const { editPasswordForm, onChangeForm } = usePasswordEditForm();
-  const { currentPassword, newPassword, newPasswordConfirm } = editPasswordForm;
-  const error = true;
+  const {
+    newPassword,
+    newPasswordConfirm,
+    currentPassword,
+    onChangeCurrentPassword,
+    onChangeNewPassword,
+    onChangeNewPasswordConfirm,
+    onFormValidation,
+    currentPasswordError,
+    newPasswordConfirmError,
+    newPasswordError,
+    mutatePasswordEdit,
+  } = usePasswordEditForm();
   return (
     <PasswordEditFormBlock>
       <InputBox>
@@ -18,9 +28,10 @@ function PasswordEditForm() {
             type="password"
             name="currentPassword"
             value={currentPassword}
-            onChange={onChangeForm}
+            onChange={onChangeCurrentPassword}
+            onBlur={onFormValidation}
           />
-          {error && (
+          {currentPasswordError && (
             <WarningText>현재 비밀번호와 일치하지 않습니다.</WarningText>
           )}
           <ForgetText>
@@ -38,9 +49,10 @@ function PasswordEditForm() {
             type="password"
             name="newPassword"
             value={newPassword}
-            onChange={onChangeForm}
+            onChange={onChangeNewPassword}
+            onBlur={onFormValidation}
           />
-          {error && (
+          {newPasswordError && (
             <WarningText>
               영문 대소문자, 숫자, 특수문자 중 2종류 이상을 조합하여 <br />
               8~16자의 비밀번호를 생성해주세요.
@@ -55,14 +67,18 @@ function PasswordEditForm() {
             type="password"
             name="newPasswordConfirm"
             value={newPasswordConfirm}
-            onChange={onChangeForm}
+            onChange={onChangeNewPasswordConfirm}
+            onBlur={onFormValidation}
           />
-          {error && <WarningText>새 비밀번호와 일치하지 않습니다.</WarningText>}
+          {newPasswordConfirmError && (
+            <WarningText>새 비밀번호와 일치하지 않습니다.</WarningText>
+          )}
         </div>
       </InputBox>
       <EditButtonGroups>
         <Button children="취소" variant="primary" width="174px" height="40px" />
         <Button
+          onClick={() => mutatePasswordEdit()}
           children="저장"
           variant="quaternary"
           width="174px"
