@@ -1,7 +1,7 @@
 import { ItemId } from "@atlaskit/tree";
 import {
-  DotoriCardOptionButton,
   MobileDotoriCard,
+  MobileDotoriCardOptionButton,
 } from "domains/@shared/components";
 import { useToast } from "domains/@shared/hooks";
 import { useInfiniteScroll } from "domains/@shared/hooks/useInfiniteScroll";
@@ -87,7 +87,7 @@ function DotoriList({ dotoris, fetchNextPage }: Props) {
             profileName={name}
             profileImageSrc={profileImg}
             optionsButton={
-              <DotoriCardOptionButton
+              <MobileDotoriCardOptionButton
                 isActiveDotoriMenu={isActiveDotoriMenu}
                 isOpenDotoriMenu={
                   isActiveDotoriMenu.id === dotori.id &&
