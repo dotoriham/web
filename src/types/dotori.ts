@@ -29,6 +29,7 @@ export interface Dotori {
 
 /**
  * @deprecated 리팩토링 끝나면 삭제 예정
+ * @see DotoriUiModel
  */
 export interface IDotoriItem extends Dotori {
   checked: boolean;

@@ -1,6 +1,6 @@
 import { X24Icon } from "assets/icons";
 import { MobileModalTemplate } from "components";
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect } from "react";
 import styled from "styled-components";
 
 interface Props {
@@ -11,6 +11,12 @@ interface Props {
 }
 
 function DrawerModal({ isOpen, onClose, children, title }: Props) {
+  useEffect(() => {
+    if (isOpen) window.document.body.style.overflow = "hidden";
+    return () => {
+      window.document.body.style.overflow = "unset";
+    };
+  }, [isOpen]);
   return (
     <MobileModalTemplate isOpen={isOpen} onClose={onClose}>
       <Wrapper>
