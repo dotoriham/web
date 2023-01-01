@@ -1,4 +1,4 @@
-import { transitions } from "lib/styles";
+import { palette, transitions } from "lib/styles";
 import React, { ReactNode, useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import ModalPortal from "./ModalPortal";
@@ -38,8 +38,8 @@ function MobileModalTemplate({ children, isOpen, onClose }: Props) {
             <Inner>{children}</Inner>
           </Wrapper>
         </div>
+        <ModalBackground />
       </ModalTemplateContainer>
-      <ModalBackground />
     </ModalPortal>
   );
 }
@@ -50,19 +50,18 @@ const ModalTemplateContainer = styled.div`
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 10000;
 `;
 
 const ModalBackground = styled.div`
   display: block;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: ${palette.black};
   position: absolute;
   left: 0;
   top: 0;
   opacity: 0.3;
-  z-index: 4000;
 `;
 
 const Wrapper = styled.div<{ isOpen: boolean }>`
@@ -72,6 +71,7 @@ const Wrapper = styled.div<{ isOpen: boolean }>`
   left: 0px;
   display: flex;
   max-height: calc(100% - 25px);
+  z-index: 15000;
   ${({ isOpen }) =>
     isOpen
       ? css`
