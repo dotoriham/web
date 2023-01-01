@@ -58,6 +58,7 @@ function MobileDotoriCard({
               )}
               {profileName && <>{profileName}</>}
             </Author>
+            {optionsButton}
           </BottomArea>
         </Content>
       </Inner>
@@ -96,6 +97,7 @@ const DotoriImage = styled.img`
 `;
 
 const Content = styled.div`
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -126,7 +128,11 @@ const Description = styled.div`
   -webkit-box-orient: vertical;
 `;
 
-const BottomArea = styled.div``;
+const BottomArea = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+`;
 
 const Author = styled.div`
   display: flex;
