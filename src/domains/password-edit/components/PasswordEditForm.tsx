@@ -1,14 +1,46 @@
 import { Button, SmallBlackText } from "components";
 import { palette } from "lib/styles";
-import React, { memo } from "react";
-import { Link } from "react-router-dom";
+import React, { ChangeEvent, memo } from "react";
+import { UseMutateFunction } from "react-query";
 import styled from "styled-components";
-import usePasswordEditForm from "../hooks/usePasswordEditForm";
+import ForgetPassword from "./ForgetPassword";
 
-function PasswordEditForm() {
-  const { editPasswordForm, onChangeForm } = usePasswordEditForm();
-  const { currentPassword, newPassword, newPasswordConfirm } = editPasswordForm;
-  const error = true;
+interface Props {
+  newPassword: string;
+  newPasswordConfirm: string;
+  currentPassword: string;
+  onChangeCurrentPassword(
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void;
+  onChangeNewPassword(
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void;
+  onChangeNewPasswordConfirm(
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void;
+  onFormValidation(
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void;
+  currentPasswordError: string | null;
+  newPasswordConfirmError: string | null;
+  newPasswordError: string | null;
+  mutatePasswordEdit: UseMutateFunction;
+  disableButton: boolean;
+}
+function PasswordEditForm({
+  currentPassword,
+  currentPasswordError,
+  mutatePasswordEdit,
+  newPassword,
+  newPasswordConfirm,
+  newPasswordConfirmError,
+  newPasswordError,
+  onChangeCurrentPassword,
+  onChangeNewPassword,
+  onChangeNewPasswordConfirm,
+  onFormValidation,
+  disableButton,
+}: Props) {
   return (
     <PasswordEditFormBlock>
       <InputBox>
@@ -18,17 +50,13 @@ function PasswordEditForm() {
             type="password"
             name="currentPassword"
             value={currentPassword}
-            onChange={onChangeForm}
+            onChange={onChangeCurrentPassword}
+            onBlur={onFormValidation}
           />
-          {error && (
+          {currentPasswordError && (
             <WarningText>현재 비밀번호와 일치하지 않습니다.</WarningText>
           )}
-          <ForgetText>
-            <div>비밀번호를 잊으셨나요?</div>
-            <div>
-              <Link to="">비밀번호 재설정</Link>
-            </div>
-          </ForgetText>
+          <ForgetPassword />
         </div>
       </InputBox>
       <InputBox>
@@ -38,9 +66,10 @@ function PasswordEditForm() {
             type="password"
             name="newPassword"
             value={newPassword}
-            onChange={onChangeForm}
+            onChange={onChangeNewPassword}
+            onBlur={onFormValidation}
           />
-          {error && (
+          {newPasswordError && (
             <WarningText>
               영문 대소문자, 숫자, 특수문자 중 2종류 이상을 조합하여 <br />
               8~16자의 비밀번호를 생성해주세요.
@@ -55,14 +84,25 @@ function PasswordEditForm() {
             type="password"
             name="newPasswordConfirm"
             value={newPasswordConfirm}
-            onChange={onChangeForm}
+            onChange={onChangeNewPasswordConfirm}
+            onBlur={onFormValidation}
           />
-          {error && <WarningText>새 비밀번호와 일치하지 않습니다.</WarningText>}
+          {newPasswordConfirmError && (
+            <WarningText>새 비밀번호와 일치하지 않습니다.</WarningText>
+          )}
         </div>
       </InputBox>
       <EditButtonGroups>
-        <Button children="취소" variant="primary" width="174px" height="40px" />
         <Button
+          onClick={() => window.history.back()}
+          children="취소"
+          variant="primary"
+          width="174px"
+          height="40px"
+        />
+        <Button
+          onClick={() => mutatePasswordEdit()}
+          disabled={disableButton}
           children="저장"
           variant="quaternary"
           width="174px"
@@ -98,22 +138,6 @@ const PasswordInput = styled.input`
 
 const FormLabel = styled(SmallBlackText)`
   padding-top: 8px;
-`;
-
-const ForgetText = styled.div`
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  line-height: 17px;
-  padding: 4px 0;
-  gap: 8px;
-  div:first-child {
-    color: ${palette.grayDark};
-  }
-  div:last-child {
-    color: ${palette.grayDarkest};
-    text-decoration: underline;
-  }
 `;
 
 const WarningText = styled.div`

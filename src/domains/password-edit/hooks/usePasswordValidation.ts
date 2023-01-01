@@ -4,9 +4,11 @@ import { passwordCheck } from "../apis/passwordCheck";
 import { regexPassword } from "../utils/regex";
 
 export default function usePasswordValidation() {
-  const [currentPasswordError, setCurrentPasswordError] = useState("");
-  const [newPasswordError, setNewPasswordError] = useState("");
-  const [newPasswordConfirmError, setNewPasswordComfirmError] = useState("");
+  const [currentPasswordError, setCurrentPasswordError] =
+    useState<string | null>(null);
+  const [newPasswordError, setNewPasswordError] = useState<string | null>(null);
+  const [newPasswordConfirmError, setNewPasswordComfirmError] =
+    useState<string | null>(null);
 
   const { mutate: onValidateMatchPassword } = useMutation(
     (currentPassword: string) => passwordCheck(currentPassword),
@@ -25,11 +27,13 @@ export default function usePasswordValidation() {
       setNewPasswordError("비밀번호를 입력해주세요.");
       return;
     }
-    if (regexPassword(newPassword)) {
+    if (!regexPassword(newPassword)) {
       setNewPasswordError(
         "영문 대소문자, 숫자, 특수문자 중 2종류 이상을 조합하여 \n8자 이상 20자 이하로 입력해주세요."
       );
+      return;
     }
+    setNewPasswordError("");
   };
 
   const onValidateNewPasswordConfirm = (
@@ -38,7 +42,9 @@ export default function usePasswordValidation() {
   ) => {
     if (newPassword !== newpasswordConfirm) {
       setNewPasswordComfirmError("새 비밀번호와 일치하지 않습니다.");
+      return;
     }
+    setNewPasswordComfirmError("");
   };
 
   return {
