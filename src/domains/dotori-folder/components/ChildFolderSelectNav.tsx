@@ -1,13 +1,16 @@
+import { ArrowUp16Icon } from "assets/icons";
 import CheckBox from "components/CheckBox/CheckBox";
 import { palette } from "lib/styles/palette";
 import React from "react";
 import styled from "styled-components";
 
 interface Props {
-  onToggleAllChildFolder: () => void;
-  onToggleDeleteModal: () => void;
+  onToggleAllChildFolder(): void;
+  onToggleDeleteModal(): void;
+  onToggleFolderList(): void;
   isAllChecked: boolean;
   isCheckedChildFolder: boolean;
+  isOpenFolderList: boolean;
 }
 
 function ChildFolderSelectNav({
@@ -15,6 +18,8 @@ function ChildFolderSelectNav({
   isCheckedChildFolder,
   onToggleAllChildFolder,
   onToggleDeleteModal,
+  onToggleFolderList,
+  isOpenFolderList,
 }: Props) {
   return (
     <ChildFolderSelectNavBlock>
@@ -34,6 +39,12 @@ function ChildFolderSelectNav({
           </SelectOption>
         )}
       </SelectBox>
+      <FolderListToggleButton onClick={onToggleFolderList}>
+        <div className="text">{isOpenFolderList ? "접기" : "펼치기"}</div>
+        <ArrowIconBox isOpen={isOpenFolderList}>
+          <ArrowUp16Icon />
+        </ArrowIconBox>
+      </FolderListToggleButton>
     </ChildFolderSelectNavBlock>
   );
 }
@@ -76,6 +87,26 @@ const Option = styled.div`
   height: 17px;
   margin-left: 16px;
   cursor: pointer;
+`;
+
+const FolderListToggleButton = styled.button`
+  color: ${palette.grayDarker};
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  .text {
+    margin-right: 4px;
+    height: 100%;
+    line-height: 19px;
+  }
+`;
+
+const ArrowIconBox = styled.div<{ isOpen: boolean }>`
+  ${({ isOpen }) => !isOpen && `transform: rotate(180deg);`}
+  transition: all ease .5s;
+  display: flex;
+  align-items: center;
 `;
 
 export default ChildFolderSelectNav;

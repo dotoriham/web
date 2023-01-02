@@ -3,7 +3,7 @@ import React, { memo, useCallback, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { dotoriSelector } from "stores/dotori";
 import styled from "styled-components";
-import { DotoriPathTypes, IDotoriItem } from "types/dotori";
+import { Dotori, DotoriPathTypes } from "types/dotori";
 import { initialDotoriState } from "../../utils/constants";
 import DotoriAddButton from "./DotoriAddButton";
 import DotoriAddModal from "./DotoriAddModal";
@@ -15,7 +15,7 @@ import { useToast, useToggle } from "domains/@shared/hooks";
 import { userSelector } from "stores/user";
 import useDotoriSelect from "../../hooks/useDotoriSelect";
 
-export interface ActiveDotoriMenu extends IDotoriItem {
+export interface ActiveDotoriMenu extends Dotori {
   isOpen: boolean;
 }
 
@@ -40,7 +40,7 @@ function DotoriList({ path }: { path: DotoriPathTypes }) {
     });
 
   const onActiveDotoriMenu = useCallback(
-    (dotori: IDotoriItem, isOpen: boolean) => {
+    (dotori: Dotori, isOpen: boolean) => {
       setIsActiveDotoriMenu({ ...dotori, isOpen });
     },
     []
